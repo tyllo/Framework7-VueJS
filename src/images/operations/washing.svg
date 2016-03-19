@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 60 58" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+  <g>
+    <rect x='9' y='44'  width='2' height='3'/>
+    <rect x='14' y='44' width='2' height='3'/>
+    <rect x='19' y='44' width='2' height='3'/>
+    <rect x='24' y='44' width='2' height='3'/>
+    <rect x='29' y='44' width='2' height='3'/>
+    <rect x='34' y='44' width='2' height='3'/>
+    <rect x='39' y='44' width='2' height='3'/>
+    <rect x='44' y='44' width='2' height='3'/>
+    <rect x='49' y='44' width='2' height='3'/>
+    <rect x='9' y='49' width='2' height='3'/>
+    <rect x='14' y='49' width='2' height='3'/>
+    <rect x='19' y='49' width='2' height='3'/>
+    <rect x='24' y='49' width='2' height='3'/>
+    <rect x='29' y='49' width='2' height='3'/>
+    <rect x='29' y='54' width='2' height='3'/>
+    <rect x='34' y='49' width='2' height='3'/>
+    <rect x='39' y='49' width='2' height='3'/>
+    <rect x='44' y='49' width='2' height='3'/>
+    <rect x='49' y='49' width='2' height='3'/>
+    <rect x='9' y='54' width='2' height='3'/>
+    <rect x='14' y='54' width='2' height='3'/>
+    <rect x='19' y='54' width='2' height='3'/>
+    <rect x='24' y='54' width='2' height='3'/>
+    <rect x='34' y='54' width='2' height='3'/>
+    <rect x='39' y='54' width='2' height='3'/>
+    <rect x='44' y='54' width='2' height='3'/>
+    <rect x='49' y='54' width='2' height='3'/>
+    <path d='M53,34h-0.4C51,24.8,43.9,17.6,35,15.6V2c0-0.6-0.4-1-1-1h-8c-0.6,0-1,0.4-1,1v13.6
+      c-8.9,2-16,9.2-17.6,18.4H7c-3.3,0-6,2.7-6,6v1c0,0.6,0.4,1,1,1h56c0.6,0,1-0.4,1-1v-1C59,36.7,56.3,34,53,34z M27,3h6v9h-6V3z
+       M27,15v-2h6v2H27z M30,17c10.4,0,19.3,7.7,20.8,18H9.2C10.7,24.7,19.6,17,30,17z M3,40c0-2.2,1.8-4,4-4h1.2h43.6H53
+      c2.2,0,4,1.8,4,4H3z'/>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+item-content-accordion(
+  :icon.once='type',
+  :title.once='title',
+  :text.once='text',
+  :after='size')
+  icon(slot='icon', :id.once='type', class=style.icon)
+  template(slot='after')
+    .badge.badge-clear {{ type }}
+    .badge(:class.once="{'bg-red': load}") {{ size | parseSize }}
+  slot(slot='accordion')

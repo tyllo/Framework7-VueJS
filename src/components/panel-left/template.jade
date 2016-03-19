@@ -1,0 +1,23 @@
+.panel.panel-left.panel-cover(:class="{'layout-dark': isIos}")
+  a.item-link.close-panel.color-white.no-border(
+    v-link="{name: 'profile'}",
+    :style.once='style',
+    valign='bottom',
+    class=style.profile)
+      .content-block.text-center
+        img(v-if='src', :src='src', alt='')
+        icon(v-else, id='profile')
+      .content-block(class=style.name) {{ companyName }}
+      .content-block(class=style.currency) {{ summa | summaTitle }}
+
+  .list-group(v-for='pages in menu')
+    .list-block.media-list.clear-both
+      ul.icon-color-default
+        li(v-for='page in pages')
+          item-content-link.close-panel(
+            v-link='page.link',
+            :icon.once='page.icon',
+            :title='$t(page.title)')
+            span.badge.bg-red(
+              v-if='page.badge',
+              slot='after') {{ page.badge }}

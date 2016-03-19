@@ -1,0 +1,9 @@
+Page(v-el:page name=name).navbar-fixed
+  Navbar(title='profile.title')
+
+  .page-content
+   .list-block.media-list.clear-both
+      ul: li(v-for='(key, title) in profile')
+        item-content(
+          :title='key | t',
+          :text.once='title')

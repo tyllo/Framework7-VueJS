@@ -1,0 +1,37 @@
+Page(v-el:page name=name).navbar-fixed
+  //.toolbar-fixed
+  Navbar
+    template(slot='right')
+      a.link.icon-only(
+        v-if='showExtendNavbar',
+        @click='onShowSearch',
+        href='#search')
+        icon(id='androidSearch')
+      a.link.icon-only(
+        v-if='showExtendNavbar',
+        @click='onShowCalendar',
+        href='#calendar')
+        icon(id='calendar')
+      a.link.icon-only(
+        v-el:popup,
+        @click='onShowOrder',
+        href='#sort')
+        icon(id='sort')
+
+  Search-bar(
+    v-if='show.search',
+    :event='tab',
+    :show.sync='show.search')
+
+  Calendar-rang(
+    :show.sync='show.calendar',
+    :event='tab',
+    v-if='show.calendar')
+
+  include toolbar
+  //- .page-content
+    //- .tabs-swipeable-wrap
+  .page-content.tabs.hide-toolbar-on-scroll
+    .tab(v-el:containers)#tab-containers.active: Containers
+    .tab(v-el:bills)#tab-bills: Bills
+    .tab(v-el:advance)#tab-advance: Advance

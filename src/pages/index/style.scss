@@ -1,0 +1,56 @@
+@import '~styles/vars';
+
+:local .page-content {
+  background: $brend-gradient;
+}
+
+:local div.text-right {
+  text-align: right;
+  margin-top: 15px;
+}
+
+:local .world {
+  color: white !important;
+  opacity: .5;
+}
+
+:local div.logo {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+:local div.login {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  // transform: translateY(-50%);
+}
+
+:local svg.logo-emblem {
+  color: white;
+  height: rem(75);
+  width: 100%;
+}
+
+:local svg.logo-text {
+  margin: rem(16 0);
+  color: black;
+  height: rem(65);
+  width: 100%;
+  use {
+    // --text-ru-color: green;
+    // --logo-line-color: white;
+    // --text-en-color: red;
+  }
+}
+
+:local .button {
+  composes: button button-big from global;
+  width: 100%;
+  position: relative !important;
+  bottom: 0;
+  color: white !important;
+  border-color: white !important;
+}

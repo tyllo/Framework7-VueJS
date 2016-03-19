@@ -1,0 +1,34 @@
+@import '~styles/vars';
+@import 'table-shadow';
+@import '~animatewithsass/_properties';
+@import '~animatewithsass/_bouncing-entrances/bouncing-entrances';
+
+.bounceIn {
+  @include bounceIn();
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.list-block .item-divider .item-link .item-inner,
+.list-block.media-list .item-divider .item-link .item-inner {
+  line-height: 24px;
+}
+
+div.list-block .item-after {
+  display: block;
+}
+
+div.list-block {
+  &.clear-top, &.clear-both {
+    margin-top: 0;
+  }
+  &.clear-bottom, &.clear-both {
+    margin-bottom: 0;
+  }
+}
+
+div.list-block .item-text {
+  height: auto;
+}

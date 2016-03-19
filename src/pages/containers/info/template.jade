@@ -1,0 +1,31 @@
+Page(v-el:page name=name).navbar-fixed
+  Navbar(:title='title', state='back')
+  .page-content
+
+    .content-block-title {{ $t('containers.title.info') }}
+
+    .list-block.media-list(v-if='container.length')
+      ul.icon-color-brend(class=style.title)
+        li(v-for='operation in container | orderBy orderName',
+          :class="{'accordion-item': operation.kontr}")
+          operation-item(
+            :operation.once='operation.operation',
+            :date='operation.date | date',
+            :kontr.once='operation.kontr',
+            :transport.once='operation.transport')
+    .content-block(v-else)
+      p {{ $t('containers.title.infoEmpty') }}
+
+    .content-block-title {{ $t('containers.title.bills') }}
+    .list-block.media-list(v-if='bills.length')
+      ul.icon-color-brend(class=style.title)
+        li.accordion-item(v-for="bill in bills | orderBy orderName")
+          bill-item(
+            :date='bill.date | dateFull',
+            :number.once='bill.number',
+            :summa.once='bill.summa',
+            :currency.once='bill.currency',
+            :comment.once='bill.comment')
+
+    .content-block(v-else)
+      p {{ $t('containers.title.billsEmpty') }}

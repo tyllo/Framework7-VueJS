@@ -1,0 +1,20 @@
+.content-block
+  .row
+    .col-33 {{ $t('bills.count') }}
+    .col-66 {{ count }}
+
+  .row
+    .col-33 {{ $t('bills.price') }}
+    .col-66 {{ price | formatSumm}}
+
+  .row
+    .col-33 {{ $t('bills.summa') }}
+    .col-66 {{ summa | formatSumm}}
+
+  .row
+    .col-33 {{ $t('bills.NDS') }}
+    .col-66 {{ NDS | formatSumm }}
+
+  .row
+    .col-33 {{ $t('bills.summands') }}
+    .col-66 {{ summands | formatSumm }}

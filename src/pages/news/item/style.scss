@@ -1,0 +1,16 @@
+
+:local .lazy {
+  composes: lazy-fadeIn from global;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+:local div.date {
+  display: inline-block;
+  width: 100%;
+  // min-height: auto;
+  text-align: end;
+  font-size: 14px;
+  line-height: 48px;
+}

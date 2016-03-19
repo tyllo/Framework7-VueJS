@@ -1,0 +1,11 @@
+@import '~styles/vars';
+
+:local .icon {
+  height: 45px !important;
+  width: 90px !important;
+}
+
+.badge.badge-clear {
+  color: inherit;
+  background-color: transparent;
+}

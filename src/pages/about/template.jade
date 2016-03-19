@@ -1,0 +1,21 @@
+Page(v-el:page name=name).navbar-fixed
+  Navbar(title='about.title')
+  .page-content
+    icon(id='logoEmblem', class=style['logo-emblem'])
+    icon(id='logoText', class=style['logo-text'], height='65', width='120')
+    .list-block.media-list
+      .list-block-label(class=style.label) {{{ $t('about.subtitle') }}}
+      ul.icon-color-default
+        li: item-content-link.external(
+          href='mailto:develope@xdraw.ru',
+          icon='bug',
+          :title="$t('about.developer')")
+
+        li: item-content-link.external(
+          href='//play.google.com',
+          icon='star',
+          :title="$t('about.feedback')")
+
+        li: item-content(
+          icon='codeWorking',
+          :title='version')

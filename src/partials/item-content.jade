@@ -1,0 +1,14 @@
+.item-media(v-if='icon')
+  slot(name='icon')
+    icon(:id.once='icon')
+.item-inner
+  .item-title-row
+    .item-title
+      slot(name='title') {{ title }}
+    .item-after
+      slot(name='after') {{ after }}
+  .item-subtitle
+    slot(name='subtitle') {{ subtitle }}
+  .item-text
+    slot(name='text') {{ text }}
+  slot(name='input').item-input

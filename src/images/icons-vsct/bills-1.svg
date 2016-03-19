@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg viewBox='0 0 62 62' xmlns='http://www.w3.org/2000/svg' fill='currentColor'>
+  <g>
+    <path d='M60,23h-4V13c0-0.6-0.4-1-1-1h-4V2c0-0.6-0.4-1-1-1H2C1.5,1,1,1.4,1,2v36c0,0.6,0.4,1,1,1h4v10 c0,0.6,0.4,1,1,1h4v10c0,0.6,0.4,1,1,1h48c0.6,0,1-0.4,1-1V24C61,23.4,60.5,23,60,23z M49,30H3V9h46L49,30z M49,3l0,5H3V3H49z M3,31h46l0,6H3V31z M50,39c0.6,0,1-0.4,1-1V14h3v27H8v-2H50z M8,42h46v6H8V42z M55,50c0.6,0,1-0.4,1-1V25h3v27H13v-2H55z M13,59 v-6h46v6H13z'/>
+    <rect x='36' y='12' width='7' height='1'/>
+    <rect x='8' y='12' width='24' height='1'/>
+    <rect x='36' y='16' width='7' height='1'/>
+    <rect x='8' y='16' width='24' height='1'/>
+    <rect x='36' y='20' width='7' height='1'/>
+    <rect x='8' y='20' width='24' height='1'/>
+    <rect x='36' y='24' width='7' height='1'/>
+    <rect x='8' y='24' width='24' height='1'/>
+    <rect x='36' y='14' width='7' height='1'/>
+    <rect x='8' y='14' width='24' height='1'/>
+    <rect x='36' y='18' width='7' height='1'/>
+    <rect x='8' y='18' width='24' height='1'/>
+    <rect x='36' y='22' width='7' height='1'/>
+    <rect x='8' y='22' width='24' height='1'/>
+    <rect x='36' y='26' width='7' height='1'/>
+    <rect x='8' y='26' width='24' height='1'/>
+    <rect x='36' y='33' width='7' height='2'/>
+    <rect x='41' y='44' width='7' height='2'/>
+    <rect x='46' y='55' width='7' height='2'/>
+  </g>
+</svg>

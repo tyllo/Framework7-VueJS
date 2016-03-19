@@ -1,0 +1,15 @@
+form.searchbar(v-el:form)
+  .searchbar-input
+    input(
+      type='search',
+      v-model='model',
+      @keyup.enter='onSearch',
+      :placeholder='placeholder')
+    a.searchbar-search(
+      @click='onSearch',
+      href='#')
+    a.searchbar-clear(href='#')
+  //- a.searchbar-cancel(href='#') Cancel
+
+.searchbar-overlay.searchbar-overlay-active(
+  @click='hide')

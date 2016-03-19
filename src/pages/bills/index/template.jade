@@ -1,0 +1,18 @@
+.content-block(v-show='!date_at && !date_to && !bills.length')
+  p {{ $t('bills.empty.dates') }}
+
+.content-block(v-show='date_at && date_to && !bills.length')
+  p {{{ $t('bills.empty.bills', date_at, date_to) }}}
+
+.content-block(v-show='date_at && date_to && bills.length')
+  p: strong {{ date_at | dateFull }} — {{ date_to | dateFull }}
+
+.list-block.media-list.clear-top(v-if='bills.length')
+  ul(class=style.title)
+    li.accordion-item(v-for="bill in bills | orderBy orderName")
+      bill-item(
+        :date='bill.date | dateFull',
+        :number.once='bill.number',
+        :summa.once='bill.summa',
+        :currency.once='bill.currency',
+        :comment.once='bill.comment')

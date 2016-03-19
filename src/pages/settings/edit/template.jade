@@ -1,0 +1,26 @@
+Page(v-el:page name=name).navbar-fixed
+  Navbar(title='settings.title' state='back')
+  .page-content
+    .content-block-title {{ $t('settings.titleNotify') }}
+    form(v-el:form).list-block.inputs-list
+      ul.icon-color-default
+        li: item-content(icon='email')
+            .floating-label(slot='title') {{ $t('settings.email') }}
+            .item-input-field(slot='input')
+              input(
+                type='email',
+                :value='settings.email')
+        li: item-content(icon='call')
+            .floating-label(slot='title') {{ $t('settings.phone') }}
+            .item-input-field(slot='text')
+              input(type='tel',
+                :value='settings.phone')
+
+    .content-block-title {{ $t('settings.avatar') }}
+    .list-block.inputs-list
+      ul.icon-color-default
+        li: item-content(icon='email')
+            .floating-label(slot='title') {{ $t('Email') }}
+            .item-input-field(slot='text')
+              input(type='email',
+                :value='settings.gravatar_email')

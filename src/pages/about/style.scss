@@ -1,0 +1,31 @@
+@import '~styles/vars';
+
+[data-page='about'] {
+  .list-block {
+    margin: 0;
+  }
+
+  .list-block-label {
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+:local(svg.logo-emblem) {
+  width: 100%;
+  height: rem(75);
+  margin: rem(56 0 0);
+  color: $brend-color;
+}
+
+:local(svg.logo-text) {
+  width: 100%;
+  height: rem(75);
+  margin: rem(16 0);
+  color: black;
+  // use {
+  //   --text-ru-color: green;
+  //   --logo-line-color: pink;
+  //   --text-en-color: red;
+  // }
+}

@@ -1,0 +1,15 @@
+Page(v-el:page name=name).navbar-fixed
+  Navbar(:title='title', state='back')
+  .page-content
+
+    .list-block.media-list.clear-both(v-if='bill.length')
+      ul(class=style.title)
+        li.accordion-item(v-for="item in bill | orderBy 'price'")
+          bill-info-item(
+            :tovar.once='item.tovar',
+            :count.once='item.count',
+            :price.once='item.price',
+            :summa.once='item.summa',
+            :NDS.once='item.NDS',
+            :summands.once='item.summands')
+        li: item-content(:title='total | formatSumm' class=style.total)

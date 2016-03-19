@@ -1,0 +1,18 @@
+Page(v-el:page name=name).navbar-fixed
+  Navbar
+  a.floating-button(
+    v-if='isAndroid'
+    v-show='textarea.trim()'
+    @click.stop.prevent='onSubmit'
+    href='#')
+    icon(id='check')
+
+  .page-content
+    .content-block
+      p {{ $t('feedback.text') }}
+      form(@submit.stop.prevent='onSubmit').list-block
+        .item-input
+          textarea.resizable(
+            v-model='textarea'
+            debounce='500'
+            placeholder="{{ $t('feedback.placeholder') }}")

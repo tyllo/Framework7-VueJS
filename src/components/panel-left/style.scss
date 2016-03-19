@@ -1,0 +1,49 @@
+@import '~styles/vars';
+
+:local .profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+
+  height: 10rem;
+  background-size: cover;
+  background-position: center center;
+
+  :global(.content-block) {
+    margin: 0;
+  }
+
+  svg, img {
+    height: 5rem;
+    width: 5rem;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-color: $brend-color;
+  }
+
+  .name, .currency {
+    line-height: 24px;
+    text-shadow: 1px 1px 2px black;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .name {
+    font-size: 16px;
+  }
+
+  .currency {
+    font-size: 12px;
+    background-color: rgba(0,0,0, .5);
+  }
+}
+
+// div.layout-dark {
+//   color: #fff;
+// }
+
+.text-center {
+  text-align: center;
+}

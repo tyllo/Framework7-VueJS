@@ -1,0 +1,15 @@
+item-content-accordion(
+  :title="$t('bills.header', {number: number})",
+  :subtitle="$t('bills.subtitle', {date: date})")
+  .badge.badge-clear(slot='after') {{ summa | formatSumm }} {{ currency }}
+  .table-shadow(slot='accordion')
+    ul
+      li: item-content(:text.once='comment')
+      li: item-content-link(
+        v-for="container in containers",
+        v-link='container | toCntInfo',
+        :title="$t('containers.header', {number: container})")
+      li: item-content-link(
+        class=style.link,
+        v-link='number | toBillInfo',
+        :title="$t('bills.more')")

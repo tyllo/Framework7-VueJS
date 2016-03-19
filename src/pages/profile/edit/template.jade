@@ -1,0 +1,14 @@
+Page(v-el:page name=name).navbar-fixed
+  Navbar(title='profile.title' state='back')
+
+  .page-content
+    .list-block.inputs-list.clear-both
+      ul: li(v-for='(key, value) in profile')
+        item-content
+          .label(slot='title') {{ key | t }}
+          template(slot='input')
+            .item-input.item-input-field
+              textarea.resizable(
+                type='text',
+                v-model='value',
+                debounce='500')

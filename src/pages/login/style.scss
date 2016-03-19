@@ -1,0 +1,8 @@
+:local .cancel {
+  composes: button button-fill button-big color-red from global;
+}
+
+:local .login {
+  composes: button button-fill button-big color-green from global;
+  width: 100%;
+}

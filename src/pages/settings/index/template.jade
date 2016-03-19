@@ -1,0 +1,41 @@
+Page(v-el:page name=name).navbar-fixed
+  Navbar(title='settings.title')
+  .page-content
+    .content-block-title {{ $t('settings.titleNotify') }}
+    .list-block.media-list.clear-top
+      ul.icon-color-default
+        li: item-content(
+            icon='email',
+            :title='settings.email')
+            label(slot='after').label-switch
+              input(type='checkbox',
+                name='email',
+                @change='toggleNotify',
+                :checked='settings.notifyBy.email')
+              .checkbox
+        li: item-content(
+            icon='call',
+            :title='settings.phone')
+            label(slot='after').label-switch
+              input(type='checkbox',
+                name='phone',
+                @change='toggleNotify',
+                :checked='settings.notifyBy.phone')
+              .checkbox
+        li.item-divider
+          item-content-link.external(
+            href='//gravatar.com',
+            :title="$t('settings.avatar')")
+        li: item-content(
+            icon='email',
+            :title='settings.gravatar_email')
+            label(slot='after').label-switch
+              input(type='checkbox',
+                name='gravatar_email',
+                @change='toggleNotify',
+                :checked='settings.notifyBy.gravatar_email')
+              .checkbox
+        li: item-content(
+            icon='world',
+            :title="$t('settings.lang')",
+            @click='openLangs')

@@ -1,0 +1,20 @@
+Page(v-el:page name=name transition='')
+
+  .page-content(class=style['page-content'])
+
+    .content-block-title(class=style['text-right'])
+      a.link.icon-only(
+        href='#',
+        v-el:lang,
+        class=style.world,
+        @click.stop.prevent='openLangs')
+        icon(id='world')
+
+    .content-block(class=style.logo, @click='clickLogo')
+      div(:class='className')
+        icon(id='logoEmblem', class=style['logo-emblem'])
+        icon(id='logoText', class=style['logo-text'], width=120, height=65)
+
+    .content-block(class=style.login)
+      a(class=style.button, v-link="{name: 'login'}").
+        {{ $t('#{name}.btn') }}

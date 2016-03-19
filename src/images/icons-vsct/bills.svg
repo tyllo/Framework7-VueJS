@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
+  <path d='M4,19.2h19.2v4H4V19.2z M20.4,17.6c0.2,0,0.4-0.2,0.4-0.4v-10h2.4v11.6H4v-1.2H20.4z M0.8,12.8H20v4H0.8V12.8z M20,3.2H0.8V0.8H20V3.2z M20,12.4H0.8V3.6H20V12.4z M23.6,6.4h-2.8v-6c0-0.2-0.2-0.4-0.4-0.4h-20C0.2,0,0,0.2,0,0.4v16.8 c0,0.2,0.2,0.4,0.4,0.4h2.8v6c0,0.2,0.2,0.4,0.4,0.4h20c0.2,0,0.4-0.2,0.4-0.4V6.8C24,6.6,23.8,6.4,23.6,6.4'/>
+  <rect x='18' y='20.8' width='2.8' height='0.8'/>
+  <rect x='14.4' y='4.8' width='2.8' height='0.4'/>
+  <rect x='14.4' y='6.4' width='2.8' height='0.4'/>
+  <rect x='14.4' y='8' width='2.8' height='0.4'/>
+  <rect x='14.4' y='9.6' width='2.8' height='0.4'/>
+  <rect x='14.4' y='5.6' width='2.8' height='0.4'/>
+  <rect x='14.4' y='7.2' width='2.8' height='0.4'/>
+  <rect x='14.4' y='8.8' width='2.8' height='0.4'/>
+  <rect x='14.4' y='10.4' width='2.8' height='0.4'/>
+  <rect x='3.6' y='4.8' width='9.2' height='0.4'/>
+  <rect x='3.6' y='6.4' width='9.2' height='0.4'/>
+  <rect x='3.6' y='8' width='9.2' height='0.4'/>
+  <rect x='3.6' y='9.6' width='9.2' height='0.4'/>
+  <rect x='3.6' y='5.6' width='9.2' height='0.4'/>
+  <rect x='3.6' y='7.2' width='9.2' height='0.4'/>
+  <rect x='3.6' y='8.8' width='9.2' height='0.4'/>
+  <rect x='3.6' y='10.4' width='9.2' height='0.4'/>
+  <rect x='14.8' y='14.4' width='2.8' height='0.8'/>
+</svg>

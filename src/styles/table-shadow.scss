@@ -1,0 +1,45 @@
+/**
+ * стиль для серой плашки с тенями снизу и сверху
+ */
+
+div.table-shadow {
+  background-color: rgb(240,240,240);
+
+  &:before, &:after {
+    content: '';
+    display: block;
+    position: relative;
+    height: 10px;
+    background-color: transparent;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .6);
+  }
+
+  &:before, {
+    margin-top: -10px;
+  }
+
+  &:after {
+    margin-bottom: -10px;
+  }
+
+  [class*='col-'] {
+    margin: {
+      top: .75rem;
+      bottom: .75rem;
+    }
+
+    &:nth-child(2) {
+      padding-left: 1rem;
+      border-left: 1px solid rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  :global .row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    &:last-child { border-bottom: none; }
+  }
+
+  :global ul {
+    background-color: transparent;
+  }
+}

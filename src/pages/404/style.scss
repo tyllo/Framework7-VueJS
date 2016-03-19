@@ -1,0 +1,31 @@
+@import '~styles/vars';
+
+:local div.page {
+  background-color: $brend-color;
+}
+
+:local svg.notFound {
+  margin-top: 25%;
+  width: 100%;
+  height: rem(160);
+  color: white;
+}
+
+:local h1.title {
+  padding-top: rem(32);
+  font-size: rem(120);
+  text-align: center;
+  line-height: 1;
+  margin: rem(0);
+  color: #000;
+}
+
+:local .content {
+  text-align: center;
+  font-weight: normal;
+  font-size: rem(12);
+  letter-spacing: rem(16);
+  text-transform: uppercase;
+  margin: rem(0);
+  color: #000;
+}

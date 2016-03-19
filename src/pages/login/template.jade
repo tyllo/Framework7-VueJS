@@ -1,0 +1,29 @@
+Page(v-el:page name=name).no-navbar.no-toolbar.no-swipeback
+  .page-content.login-screen-content
+    .login-screen-title {{ $t('login.title') }}
+    form(@submit.stop.prevent='onSubmit')
+      .list-block.inputs-list
+        .list-block-label {{{ $t('index.company.name') }}}
+        ul
+          li.item-content
+            .item-inner
+              .item-title.label {{ $t('login.username.label') }}
+              .item-input
+                input(type='text' autocomplete='off'
+                  @focus='onFocus' v-model!='login'
+                  placeholder="{{ $t('login.username.placeholder') }}")
+          li.item-content
+            .item-inner
+              .item-title.label {{ $t('login.password.label') }}
+              .item-input
+                input(type='password' autocomplete='off'
+                  @focus='onFocus' v-model!='password'
+                  placeholder="{{ $t('login.username.placeholder') }}")
+      .content-block: .list-block-label.color-red {{ message }}
+      .content-block.color-gray {{ $t('login.description') }}
+      .content-block
+        .row
+          .col-50: a(class=style.cancel, v-link="{name: 'index'}")
+            | {{ $t('login.btn.cancel') }}
+          .col-50: button(class=style.login, type='submit')
+            | {{ $t('login.btn.login') }}

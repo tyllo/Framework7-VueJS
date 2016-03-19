@@ -1,0 +1,12 @@
+/* always present */
+.page-transition {
+  transition: all .3s ease;
+  overflow: hidden;
+}
+
+/* .expand-enter defines the starting state for entering */
+/* .expand-leave defines the ending state for leaving */
+.page-enter, .page-leave {
+  height: 0;
+  opacity: 0;
+}

@@ -1,0 +1,14 @@
+Page(v-el:page name=name).navbar-fixed
+  Navbar(title='news.title')
+  .page-content
+    Card(v-for='news in newsList', class=style.card)
+      div(
+        slot='header',
+        :style.once='news.image | background',
+        class=style.header)
+      div(slot='content', class=style.content)
+        | {{ news.title }}
+      template(slot='footer')
+        span.color-gray {{ news.date | dateFull }}
+        a(v-link="{name: 'news/item', params: {id: news.id }}").link
+          | {{ $t('news.read') }}

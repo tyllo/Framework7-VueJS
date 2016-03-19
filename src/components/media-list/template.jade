@@ -1,0 +1,16 @@
+ul
+  li(
+    v-for='item in list | normilize',
+    :class='item.class')
+    component(
+      :is='item.component',
+      :href.once='item.href',
+      :class.once='item.classLink',
+      :icon.once='item.icon',
+      :title.once='item.title',
+      :after.once='item.after',
+      :subtitle.once='item.subtitle',
+      :text.once='item.text')
+      media-list(
+        slot='accordion',
+        :list.once='item.content')

@@ -1,0 +1,20 @@
+mixin left()
+  slot(name='left')
+    a(href='#' @click='click').link.icon-only
+      icon(:id='icon')
+
+mixin center()
+  slot(name='center') {{ $t(title) }}
+
+mixin right()
+  slot(name='right')
+
+.navbar
+  .navbar-inner
+    .left: +left()
+    .center: +center()
+    .right: +right()
+  .progressbar-infinite(
+    v-if='progress',
+    class=style.progressbar)
+

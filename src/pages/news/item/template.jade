@@ -1,0 +1,10 @@
+Page(v-el:page name=name).navbar-fixed
+  Navbar(title='news.title', state='back')
+  .page-content
+    img.lazy(
+      v-el:image
+      :src.once='newsItem.image',
+      class=style.lazy)
+    .card-header.color-gray(class=style.date) {{ newsItem.date | dateFull }}
+    .content-block-title {{ newsItem.title }}
+    .content-block: p {{{ newsItem.content }}}

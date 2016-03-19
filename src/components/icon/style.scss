@@ -1,0 +1,26 @@
+@import '~styles/vars';
+
+:local .icon {
+  height: 24px;
+  width: 24px;
+  fill: currentColor;
+}
+
+[slot='media'] {
+  color: $icon-default;
+}
+
+.icon-color-default {
+  svg {
+    color: $icon-default;
+    .layout-dark & {
+      color: #fff;
+    }
+  }
+}
+
+.icon-color-brend {
+  svg {
+    color: $brend-color;
+  }
+}

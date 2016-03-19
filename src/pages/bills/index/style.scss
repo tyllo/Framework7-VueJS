@@ -1,0 +1,10 @@
+:local .title {
+  :global(div.item-title-row) {
+    padding-right: 26px;
+  }
+
+  :global(div.item-text) {
+    max-height: none;
+    -webkit-line-clamp: 40;
+  }
+}

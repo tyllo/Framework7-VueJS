@@ -1,0 +1,9 @@
+.popover(class=style.popover, v-el:popover)
+  .popover-angle
+  .popover-inner
+    .list-block
+      ul: li(v-for='(key, value) in sortList')
+        a.list-button.item-link(
+          :href="'#' + key",
+          @click="changeOrder(key)")
+          | {{ value }}

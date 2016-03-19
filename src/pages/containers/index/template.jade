@@ -1,0 +1,57 @@
+mixin container-item(text)
+  container-item&attributes(attributes)(
+    :title.once='container.number',
+    :type.once='container.type',
+    :text!=text,
+    :size.once='container.size',
+    :load.once='container.load')
+    block
+
+mixin container-item-table()
+  container-item-table&attributes(attributes)(
+    :number.once='container.number',
+    :type.once='container.type',
+    :load.once='container.load',
+    :size.once='container.size',
+    :date_in.once='container.date_in',
+    :transport.once='container.transport',
+    :kontr.once='container.kontr',
+    :konos.once='container.konos',
+    :sklad_in.once='container.sklad_in',
+    :sklad_out.once='container.sklad_out')
+
+mixin item-content-link()
+  item-content-link(
+    class=style.link,
+    v-link='container | link',
+    :title="$t('containers.more')")
+
+.content-block(v-show='date_at && date_to')
+  p: strong {{ date_at | dateFull }} — {{ date_to | dateFull }}
+
+.content-block(v-show='!date_at && !date_to')
+  p {{ $t('containers.empty.dates') }}
+
+//- if empty both lists containers
+.content-block(v-show='isEmptyContainers')
+  p {{{ $t('containers.empty.containers', date_at, date_to) }}}
+
+template(v-if='containers.arrival.length')
+  .content-block-title {{ $t('containers.arrival') }}
+  .list-block.media-list.clear-both
+    ul.icon-color-brend: li.accordion-item(
+      v-for='container in containers.arrival | orderBy orderName')
+      +container-item('container.date_in | date')
+        .table-shadow
+          +container-item-table
+          +item-content-link
+
+template(v-if='containers.expense.length')
+  .content-block-title {{ $t('containers.expense') }}
+  .list-block.media-list.clear-top
+    ul.icon-color-brend: li.accordion-item(
+      v-for='container in containers.expense | orderBy orderName')
+      +container-item('container | rangeDate')
+        .table-shadow
+          +container-item-table()(:date_out.once='container.date_out')
+          +item-content-link

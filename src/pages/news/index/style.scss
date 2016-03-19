@@ -1,0 +1,33 @@
+:local .card {
+  :global(.card-header) {
+    padding: 0;
+  }
+}
+
+:local .header {
+  composes: color-white no-border from global;
+  height: 40vw;
+  width: 100%;
+  padding: 4px 16px;
+  background-size: cover;
+  background-position: center center;
+
+  span {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+div.card-content-inner {
+  margin: 16px;
+  padding: 0;
+}
+
+// for 2 stroke text and ...
+:local .content {
+  // height: 2*21px;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}

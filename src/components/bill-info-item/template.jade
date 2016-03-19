@@ -1,0 +1,18 @@
+item-content-accordion(
+  :title='title | formatSumm',
+  :text.once='tovar')
+  .badge(slot='after') {{ count }}
+  .table-shadow(slot='accordion')
+    ul
+      li: item-content
+        bill-info-item-table(
+          slot='text',
+          :count.once='count',
+          :price.once='price',
+          :summa.once='summa',
+          :NDS.once='NDS',
+          :summands.once='summands')
+      li(v-for='container in containers')
+        item-content-link(
+        v-link='container | toCntInfo',
+        :title='container | summaTitle')
