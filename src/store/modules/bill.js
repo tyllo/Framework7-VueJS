@@ -1,6 +1,6 @@
 import Storage from 'services/Storage'
 import fetch from 'services/fetch'
-import { BILL_INFO, SET_PROGRESS } from 'store/mutation-types'
+import { BILL_INFO, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
 
 export let name = 'bill'
 
@@ -21,19 +21,23 @@ export const mutations = {
 
     Storage.set(name, bill)
   },
+
+  [CHECK_EXIT](state) {
+    state.bill = Object.assign({}, defaults)
+  },
 }
 
 // actions
 export const actions = {
   getBillInfo({ dispatch, state }, number) {
-    var settings = {
-      params: { number },
-      headers: {
-        Authorization: `Bearer ${state.auth.secret}`,
-        'Content-Type': 'application/json',
-      },
-      beforeSend: () => dispatch(SET_PROGRESS, true),
+    var settings = { params: { number } }
+
+    if ( state[name].number === number) {
+      return
     }
+
+    dispatch(CHECK_EXIT)
+    dispatch(SET_PROGRESS, true)
 
     fetch.bill.info(settings).then( payload => {
       dispatch(BILL_INFO, {

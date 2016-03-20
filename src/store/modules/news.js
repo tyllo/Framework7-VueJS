@@ -1,6 +1,6 @@
 import Storage from 'services/Storage'
 import fetch from 'services/fetch'
-import { UPDATE_NEWS, SET_PROGRESS } from 'store/mutation-types'
+import { UPDATE_NEWS, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
 
 export let name = 'news'
 
@@ -22,6 +22,10 @@ export const mutations = {
 
     Storage.set(name, news)
   },
+
+  [CHECK_EXIT](state) {
+    state.news = Object.assign({}, defaults)
+  },
 }
 
 // actions
@@ -29,9 +33,12 @@ export const actions = {
   // fetch news list from rss
   updateNews({ dispatch }) {
 
+    // disallow headers in fetch
+    var settings = { headers: null }
+
     dispatch(SET_PROGRESS, true)
 
-    fetch.news().then( data => {
+    fetch.news(settings).then( data => {
       return dispatch(UPDATE_NEWS, data)
     }).catch( error => {
       return error

@@ -1,6 +1,6 @@
 import Storage from 'services/Storage'
 import fetch from 'services/fetch'
-import { CNT_INFO, SET_PROGRESS } from 'store/mutation-types'
+import { CNT_INFO, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
 
 export let name = 'container'
 
@@ -21,19 +21,23 @@ export const mutations = {
 
     Storage.set(name, container)
   },
+
+  [CHECK_EXIT](state) {
+    state.container = Object.assign({}, defaults)
+  },
 }
 
 // actions
 export const actions = {
   getCntInfo({ dispatch, state }, number) {
-    var settings = {
-      params: { number },
-      headers: {
-        Authorization: `Bearer ${state.auth.secret}`,
-        'Content-Type': 'application/json',
-      },
-      beforeSend: () => dispatch(SET_PROGRESS, true),
+    var settings = { params: { number } }
+
+    if ( state[name].number === number) {
+      return
     }
+
+    dispatch(CHECK_EXIT)
+    dispatch(SET_PROGRESS, true)
 
     fetch.container.info(settings).then( payload => {
       dispatch(CNT_INFO, {

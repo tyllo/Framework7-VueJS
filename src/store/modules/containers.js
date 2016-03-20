@@ -1,6 +1,6 @@
 import Storage from 'services/Storage'
 import fetch from 'services/fetch'
-import { CNT_LIST, SET_PROGRESS } from 'store/mutation-types'
+import { CNT_LIST, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
 
 export let name = 'containers'
 
@@ -24,6 +24,10 @@ export const mutations = {
 
     Storage.set(name, containers)
   },
+
+  [CHECK_EXIT](state) {
+    state.containers = Object.assign({}, defaults)
+  },
 }
 
 // actions
@@ -34,12 +38,9 @@ export const actions = {
 
     var settings = {
       params: { date_at: date_at / 1000, date_to: date_to / 1000 },
-      headers: {
-        Authorization: `Bearer ${state.auth.secret}`,
-        'Content-Type': 'application/json',
-      },
-      beforeSend: () => dispatch(SET_PROGRESS, true),
     }
+
+    dispatch(SET_PROGRESS, true)
 
     fetch.container.list(settings).then( payload => {
       return dispatch(CNT_LIST, {

@@ -1,6 +1,6 @@
 import Storage from 'services/Storage'
 import fetch from 'services/fetch'
-import { BILL_LIST, SET_PROGRESS } from 'store/mutation-types'
+import { BILL_LIST, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
 
 export let name = 'bills'
 
@@ -24,6 +24,10 @@ export const mutations = {
 
     Storage.set(name, bills)
   },
+
+  [CHECK_EXIT](state) {
+    state.bills = Object.assign({}, defaults)
+  },
 }
 
 // actions
@@ -33,13 +37,10 @@ export const actions = {
     var date_to = Math.max.apply(Math, dates)
 
     var settings = {
-      params: { date_at: date_at / 1000, date_to: date_to / 1000 },
-      headers: {
-        Authorization: `Bearer ${state.auth.secret}`,
-        'Content-Type': 'application/json',
-      },
-      beforeSend: () => dispatch(SET_PROGRESS, true),
+      params: { date_at: date_at / 1000, date_to: date_to / 1000 }
     }
+
+    dispatch(SET_PROGRESS, true)
 
     fetch.bill.list(settings).then( payload => {
       return dispatch(BILL_LIST, {

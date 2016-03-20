@@ -1,22 +1,12 @@
-/* globals DEBUG */
+import { fetchFactory, URL, fixtures } from './utils'
 
-import { Vue } from 'commons'
-import fixtures from 'fixtures/bill-list'
+var name = 'bill-list'
 
-var defaultSettings = {
-  url: 'api/BillList',
-  params: { 'Content-Type': 'application/json' },
-}
-
-export default function fetchBillList(settings = {}) {
-  settings = Object.assign(defaultSettings, settings)
-  if (DEBUG) { return fixtures() }
-  return Vue.http.get(settings).then(parseBillList)
-}
-
-/************************************************
-                   helpers
-===============================================*/
+export default fetchFactory({
+  url: URL[name],
+  fixture: fixtures[name],
+  parser: parseBillList,
+})
 
 /**
  * Операция, произведенная с контейнером
@@ -40,7 +30,7 @@ export class Bill {
  * @param {string} message — сообщение с сервера
  * @param <array{Bill}> — cпискок операций произведенных с указанным контейнером
  */
-function parseBillList({ data }) {
+export function parseBillList({ data }) {
   return {
     message: data.message,
     data: data.table.map( item => new Bill(item) ),

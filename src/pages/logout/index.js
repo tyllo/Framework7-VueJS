@@ -12,5 +12,5 @@ export default {
       store.actions.logout()
       redirect({name: 'index'})
     },
-  }
+  },
 }

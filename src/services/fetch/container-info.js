@@ -1,22 +1,12 @@
-/* globals DEBUG */
+import { fetchFactory, URL, fixtures } from './utils'
 
-import { Vue } from 'commons'
-import fixtures from 'fixtures/container-info'
+var name = 'container-info'
 
-var defaultSettings = {
-  url: 'api/CntInfo',
-  params: { 'Content-Type': 'application/json' },
-}
-
-export default function fetchContainerInfo(settings = {}) {
-  settings = Object.assign(defaultSettings, settings)
-  if (DEBUG) { return fixtures() }
-  return Vue.http.get(settings).then(parseContainerInfo)
-}
-
-/************************************************
-                   helpers
-===============================================*/
+export default fetchFactory({
+  url: URL[name],
+  fixture: fixtures[name],
+  parser: parseContainerInfo,
+})
 
 /**
  * Таблица сопоставляет операции с именем иконки операции

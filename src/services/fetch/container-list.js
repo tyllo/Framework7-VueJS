@@ -1,22 +1,12 @@
-/* globals DEBUG */
+import { fetchFactory, URL, fixtures } from './utils'
 
-import { Vue } from 'commons'
-import fixtures from 'fixtures/container-list'
+var name = 'container-list'
 
-var defaultSettings = {
-  url: 'api/CntList',
-  params: { 'Content-Type': 'application/json' },
-}
-
-export default function fetchContainerList(settings = {}) {
-  settings = Object.assign(defaultSettings, settings)
-  if (DEBUG) { return fixtures() }
-  return Vue.http.get(settings).then(parseContainerList)
-}
-
-/************************************************
-                   helpers
-===============================================*/
+export default fetchFactory({
+  url: URL[name],
+  fixture: fixtures[name],
+  parser: parseContainerList,
+})
 
 /**
  * Свойство контейнера

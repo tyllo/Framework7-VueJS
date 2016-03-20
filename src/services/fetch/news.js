@@ -1,26 +1,16 @@
-/* globals DEBUG */
+import { fetchFactory, URL, fixtures } from './utils'
 
-import { Vue } from 'commons'
-import fixtures from 'fixtures/news'
-
-var defaultSettings = {
-  url: 'rss.html',
-}
-
-export default function fetchNews(settings = {}) {
-  settings = Object.assign(defaultSettings, settings)
-  if (DEBUG) { return fixtures() }
-  return Vue.http.get(settings).then( ({ data }) => parseRSS(data) )
-}
-
-/************************************************
-                   helpers
-===============================================*/
-
+var name = 'news'
 var regexp = {
   item: /(?:<item>)(.+?)(?:<\/item>)/ig,
   CDATA: /(?:\!\[CDATA\[\s+?)(.+?)(?:\s+?]])/i,
 }
+
+export default fetchFactory({
+  url: URL[name],
+  fixture: fixtures[name],
+  parser: parseRSSNews,
+})
 
 /**
  * Информация о новости
@@ -53,8 +43,8 @@ export class News {
  * Список новостей, распарсенных с RSS
  * @return <array{string}> — список распарсенных новостей с RSS
  */
-function parseRSS(rss) {
-  return rss.replace(/\s/g, ' ')
+function parseRSSNews({ data }) {
+  return data.replace(/\s/g, ' ')
     .match(regexp.item)
     .map( item => new News(item) )
 }

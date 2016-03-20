@@ -1,22 +1,12 @@
-/* globals DEBUG */
+import { fetchFactory, URL, fixtures } from './utils'
 
-import { Vue } from 'commons'
-import fixtures from 'fixtures/advance'
+var name = 'advance'
 
-var defaultSettings = {
-  url: 'api/AdvanceInfo',
-  headers: { 'Content-Type': 'application/json' },
-}
-
-export default function fetchAdvanceInfo(settings = {}) {
-  settings = Object.assign(defaultSettings, settings)
-  if (DEBUG) { return fixtures() }
-  return Vue.http.get(settings).then(parseAdvanceInfo)
-}
-
-/************************************************
-                   helpers
-===============================================*/
+export default fetchFactory({
+  url: URL[name],
+  fixture: fixtures[name],
+  parser: parseAdvanceInfo,
+})
 
 /**
  * Список платежей
@@ -52,7 +42,7 @@ export class Debt {
  * @param <array{Advance}> advance — список платежей
  * @param <array{Debt}> debt — список счетов дебетовой задолжности
  */
-function parseAdvanceInfo({ data }) {
+export function parseAdvanceInfo({ data }) {
   return {
     message: data.message,
     summa: data.summa,

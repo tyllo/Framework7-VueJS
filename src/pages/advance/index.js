@@ -11,9 +11,6 @@ export default {
   name,
   mixins: [dateMixin],
   template: template(),
-  created() {
-    store.actions.getAdvance()
-  },
   computed: {
     advance: () => store.state.advance.advance,
     debt: () => store.state.advance.debt,

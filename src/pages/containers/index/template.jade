@@ -40,7 +40,7 @@ template(v-if='containers.arrival.length')
   .content-block-title {{ $t('containers.arrival') }}
   .list-block.media-list.clear-both
     ul.icon-color-brend: li.accordion-item(
-      v-for='container in containers.arrival | orderBy orderName')
+      v-for="container in containers.arrival | orderBy orderName")
       +container-item('container.date_in | date')
         .table-shadow
           +container-item-table
@@ -50,7 +50,7 @@ template(v-if='containers.expense.length')
   .content-block-title {{ $t('containers.expense') }}
   .list-block.media-list.clear-top
     ul.icon-color-brend: li.accordion-item(
-      v-for='container in containers.expense | orderBy orderName')
+      v-for="container in containers.expense | orderBy orderName")
       +container-item('container | rangeDate')
         .table-shadow
           +container-item-table()(:date_out.once='container.date_out')

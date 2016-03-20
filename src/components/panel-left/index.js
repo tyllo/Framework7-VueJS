@@ -11,9 +11,6 @@ var image = '//vsct.info/assets/i/jpg/main_svcs_01.jpg'
 export default resolve => load().then( ({ isIos }) => resolve({
   template: template({name, style}),
   data: () => ({isIos, menu, image}),
-  created() {
-    store.actions.getAdvance()
-  },
   computed: {
     companyName: () => store.state.auth.name_expeditor,
     summa: () => store.state.advance.summa,

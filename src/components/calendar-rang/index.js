@@ -26,6 +26,7 @@ export default res => load().then( ({ F7 }) => res({
   methods: {
     onClose(calendar) {
       var event = 'dates:' + this.$get('event')
+      if (calendar.value)
       this.$root.$broadcast(event, calendar.value)
       this.$set('show', false)
     },

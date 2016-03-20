@@ -15,7 +15,9 @@ export default {
     password: null,
   }),
   ready() {
-    if (store.state.auth.secret) {
+    store.actions.clearAuth('message')
+
+    if (store.state.auth.login) {
       setTimeout(this.redirect, 1000)
     }
   },
@@ -23,7 +25,7 @@ export default {
     message: () => store.state.auth.message,
   },
   methods: {
-    onFocus: store.actions.resetAuth,
+    onFocus: () => store.actions.clearAuth('message'),
     onSubmit() {
       store.actions.login({
         login: this.$get('login'),
@@ -33,6 +35,10 @@ export default {
       })
     },
     redirect() {
+      store.actions.getAdvance()
+      store.actions.getProfile()
+      store.actions.getSettings()
+
       var route = {
         name: 'tabs',
         params: {tab: 'containers'}

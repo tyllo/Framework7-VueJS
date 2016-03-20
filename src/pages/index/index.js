@@ -15,7 +15,7 @@ export default {
     className: 'bounceIn',
   }),
   ready() {
-    if (store.state.auth.secret) {
+    if (store.state.auth.login) {
       setTimeout(this.redirect, 1000)
     }
   },

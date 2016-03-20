@@ -1,6 +1,6 @@
 import Storage from 'services/Storage'
 import fetch from 'services/fetch'
-import { ADVANCE_INFO, SET_PROGRESS } from 'store/mutation-types'
+import { ADVANCE_INFO, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
 
 export let name = 'advance'
 
@@ -21,20 +21,19 @@ export const mutations = {
     state.advance = payload
     Storage.set(name, state.advance)
   },
+
+  [CHECK_EXIT](state) {
+    state.advance = Object.assign({}, defaults)
+  },
 }
 
 // actions
 export const actions = {
   getAdvance({ dispatch, state }, number) {
-    var settings = {
-      headers: {
-        Authorization: `Bearer ${state.auth.secret}`,
-        'Content-Type': 'application/json',
-      },
-      beforeSend: () => dispatch(SET_PROGRESS, true),
-    }
 
-    fetch.advance(settings).then( payload => {
+    dispatch(SET_PROGRESS, true)
+
+    fetch.advance().then( payload => {
       dispatch(ADVANCE_INFO, payload)
     }).catch( error => {
       return error

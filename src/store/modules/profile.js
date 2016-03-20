@@ -1,6 +1,6 @@
 import Storage from 'services/Storage'
 import fetch from 'services/fetch'
-import { KONTR_INFO, SET_PROGRESS } from 'store/mutation-types'
+import { KONTR_INFO, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
 
 export let name = 'profile'
 
@@ -18,20 +18,19 @@ export const mutations = {
     state.profile = payload
     Storage.set(name, state.profile)
   },
+
+  [CHECK_EXIT](state) {
+    state.profile = Object.assign({}, defaults)
+  },
 }
 
 // actions
 export const actions = {
   getProfile({ dispatch, state }) {
-    var settings = {
-      headers: {
-        Authorization: `Bearer ${state.auth.secret}`,
-        'Content-Type': 'application/json',
-      },
-      beforeSend: () => dispatch(SET_PROGRESS, true),
-    }
 
-    fetch.profile(settings).then( payload => {
+    dispatch(SET_PROGRESS, true)
+
+    fetch.profile().then( payload => {
       dispatch(KONTR_INFO, payload)
     }).catch( error => {
       return error

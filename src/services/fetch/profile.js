@@ -1,22 +1,12 @@
-/* globals DEBUG */
+import { fetchFactory, URL, fixtures } from './utils'
 
-import { Vue } from 'commons'
-import fixtures from 'fixtures/profile'
+var name = 'profile'
 
-var defaultSettings = {
-  url: 'api/KontrInfo',
-  params: { 'Content-Type': 'application/json' },
-}
-
-export default function fetchProfile(settings = {}) {
-  settings = Object.assign(defaultSettings, settings)
-  if (DEBUG) { return fixtures() }
-  return Vue.http.get(settings).then(parseProfile)
-}
-
-/************************************************
-                   helpers
-===============================================*/
+export default fetchFactory({
+  url: URL[name],
+  fixture: fixtures[name],
+  parser: parseProfile,
+})
 
 /**
  * Подробная информация о контрагенте

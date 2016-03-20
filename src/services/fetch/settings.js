@@ -1,30 +1,20 @@
-/* globals DEBUG */
+import { fetchFactory, URL, fixtures } from './utils'
 
-import { Vue } from 'commons'
-import fixtures from 'fixtures/settings'
+var name = 'settings'
 
-var defaultSettings = {
-  url: 'api/settings',
-  params: { 'Content-Type': 'application/json' },
-}
-
-export default function fetchSettings(settings = {}) {
-  settings = Object.assign(defaultSettings, settings)
-  if (DEBUG) { return fixtures() }
-  return Vue.http.get(settings).then(parseSettings)
-}
-
-/************************************************
-                   helpers
-===============================================*/
+export default fetchFactory({
+  url: URL[name],
+  fixture: fixtures[name],
+  parser: parseSettings,
+})
 
 /**
  * Настройки аккаунта
- * @param {number} phone - номер телефона для нотификаций
- * @param {string} email - email для нотификаций
- * @param {string} gravatar_email - email для аватарки с сервиса http://gravatar.com
- * @param {string} gravatar_hash - хеш для аватарки с сервиса http://gravatar.com
- * @param <Object{boolean}> notifyBy - нотификация о входе в аккаунт
+ * @param {number} phone — номер телефона для нотификаций
+ * @param {string} email — email для нотификаций
+ * @param {string} gravatar_email — email для аватарки с сервиса http://gravatar.com
+ * @param {string} gravatar_hash — хеш для аватарки с сервиса http://gravatar.com
+ * @param <Object{boolean}> notifyBy — нотификация о входе в аккаунт
  */
 export class Settings {
   constructor(data) {

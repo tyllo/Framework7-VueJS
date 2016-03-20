@@ -17,6 +17,6 @@ export default {
     store.mainView = mainView
   },
   computed: {
-    auth: () => store.state.auth.secret,
+    auth: () => store.state.auth.login,
   }
 }

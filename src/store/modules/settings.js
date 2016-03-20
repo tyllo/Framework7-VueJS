@@ -1,6 +1,11 @@
 import Storage from 'services/Storage'
 import fetch from 'services/fetch'
-import { SET_SETTINGS, TOGGLE_NOTIFY_BY, SET_PROGRESS } from 'store/mutation-types'
+import {
+  SET_SETTINGS,
+  TOGGLE_NOTIFY_BY,
+  SET_PROGRESS,
+  CHECK_EXIT,
+} from 'store/mutation-types'
 
 export const name = 'settings'
 
@@ -30,20 +35,19 @@ export const mutations = {
     settings.notifyBy[type] = !settings.notifyBy[type]
     Storage.set(name, settings)
   },
+
+  [CHECK_EXIT](state) {
+    state.settings = Object.assign({}, defaults)
+  },
 }
 
 // actions
 export const actions = {
   getSettings({ dispatch, state }) {
-    var settings = {
-      headers: {
-        Authorization: `Bearer ${state.auth.secret}`,
-        'Content-Type': 'application/json',
-      },
-      beforeSend: () => dispatch(SET_PROGRESS, true),
-    }
 
-    fetch.settings(settings).then( payload => {
+    dispatch(SET_PROGRESS, true)
+
+    fetch.settings().then( payload => {
       dispatch(SET_SETTINGS, payload)
     }).catch( error => {
       return error

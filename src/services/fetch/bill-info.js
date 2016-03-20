@@ -1,22 +1,12 @@
-/* globals DEBUG */
+import { fetchFactory, URL, fixtures } from './utils'
 
-import { Vue } from 'commons'
-import fixtures from 'fixtures/bill-info'
+var name = 'bill-info'
 
-var defaultSettings = {
-  url: 'api/BillInfo',
-  params: { 'Content-Type': 'application/json' },
-}
-
-export default function fetchBillInfo(settings = {}) {
-  settings = Object.assign(defaultSettings, settings)
-  if (DEBUG) { return fixtures() }
-  return Vue.http.get(settings).then(parseBillInfo)
-}
-
-/************************************************
-                   helpers
-===============================================*/
+export default fetchFactory({
+  url: URL[name],
+  fixture: fixtures[name],
+  parser: parseBillInfo,
+})
 
 /**
  *  Список товаров и услуг, включенных в указанный счет.
@@ -43,7 +33,7 @@ export class BillInfo {
  * @param {string} message — сообщение с сервера
  * @param {BillInfo} debt — список товаров и услуг, включенных в указанный счет
  */
-function parseBillInfo({ data }) {
+export function parseBillInfo({ data }) {
   return {
     message: data.message,
     data: data.table.map( item => new BillInfo(item) ),
