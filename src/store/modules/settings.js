@@ -43,13 +43,19 @@ export const mutations = {
 
 // actions
 export const actions = {
-  getSettings({ dispatch, state }) {
+  getSettings({ actions, dispatch, state }) {
 
     dispatch(SET_PROGRESS, true)
 
     fetch.settings().then( payload => {
       dispatch(SET_SETTINGS, payload)
     }).catch( error => {
+      // reLogin !!!
+      if (error.status === 401) {
+        actions.reLogin({
+          callback: () => actions.getSettings()
+        })
+      }
       return error
     }).then( () => {
       dispatch(SET_PROGRESS, false)

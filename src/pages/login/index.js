@@ -31,7 +31,7 @@ export default {
         login: this.$get('login'),
         password: this.$get('password'),
         // redirect if auth ok
-        redirect: this.redirect,
+        callback: this.redirect,
       })
     },
     redirect() {

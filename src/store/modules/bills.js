@@ -1,9 +1,11 @@
 import Storage from 'services/Storage'
+import Cache from 'services/CacheList'
 import fetch from 'services/fetch'
 import { BILL_LIST, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
 
 export let name = 'bills'
 
+var cache = new Cache(name)
 var defaults = {
   date_at: '',
   date_to: '',
@@ -22,6 +24,12 @@ export const mutations = {
     bills.message = payload.message
     bills.data = payload.data || []
 
+    cache.set({
+      date_at: bills.date_at,
+      date_to: bills.date_to,
+      data: bills.data,
+    })
+
     Storage.set(name, bills)
   },
 
@@ -32,7 +40,10 @@ export const mutations = {
 
 // actions
 export const actions = {
-  getBillList({ dispatch, state }, dates) {
+  getBillList({ actions, dispatch, state }, dates) {
+
+    if (!dates) { return }
+
     var date_at = Math.min.apply(Math, dates)
     var date_to = Math.max.apply(Math, dates)
 
@@ -40,6 +51,12 @@ export const actions = {
       params: { date_at: date_at / 1000, date_to: date_to / 1000 }
     }
 
+    if (cache.isIn({ date_at, date_to })) {
+      return dispatch(BILL_LIST, cache.get({ date_at, date_to }))
+    }
+
+    // reset bills info
+    dispatch(BILL_LIST, Object.assign({}, defaults))
     dispatch(SET_PROGRESS, true)
 
     fetch.bill.list(settings).then( payload => {
@@ -49,7 +66,12 @@ export const actions = {
         data: payload.data,
       })
     }).catch( error => {
-      return error
+      // reLogin !!!
+      if (error.status === 401) {
+        actions.reLogin({
+          callback: () => actions.getBillList(dates)
+        })
+      }
     }).then( () => {
       dispatch(SET_PROGRESS, false)
     })

@@ -4,6 +4,7 @@ Page(v-el:page name=name).navbar-fixed
 
     .content-block-title {{ $t('containers.title.info') }}
 
+    // show if container find
     .list-block.media-list(v-if='container.length')
       ul.icon-color-brend(class=style.title)
         li(v-for='operation in container | orderBy orderName',
@@ -16,16 +17,20 @@ Page(v-el:page name=name).navbar-fixed
     .content-block(v-else)
       p {{ $t('containers.title.infoEmpty') }}
 
-    .content-block-title {{ $t('containers.title.bills') }}
-    .list-block.media-list(v-if='bills.length')
-      ul.icon-color-brend(class=style.title)
-        li.accordion-item(v-for="bill in bills | orderBy orderName")
-          bill-item(
-            :date='bill.date | dateFull',
-            :number.once='bill.number',
-            :summa.once='bill.summa',
-            :currency.once='bill.currency',
-            :comment.once='bill.comment')
+    // show if container load
+    template(v-if='container.length')
+      .content-block-title {{ $t('containers.title.bills') }}
 
-    .content-block(v-else)
-      p {{ $t('containers.title.billsEmpty') }}
+      // show if billed
+      .list-block.media-list(v-if='bills.length')
+        ul.icon-color-brend(class=style.title)
+          li.accordion-item(v-for="bill in bills | orderBy orderName")
+            bill-item(
+              :date='bill.date | dateFull',
+              :number.once='bill.number',
+              :summa.once='bill.summa',
+              :currency.once='bill.currency',
+              :comment.once='bill.comment')
+
+      .content-block(v-else)
+        p {{ $t('containers.title.billsEmpty') }}

@@ -34,8 +34,15 @@ export function fetch(settings = {}, params) {
 
   extendSettings(settings, params)
 
-  if (DEBUG || store.state.auth.login === 'demo') {
+  if (store.state.auth.login === 'demo') {
     return fixture()
+  }
+
+  if (DEBUG) {
+    return Vue.http.get(settings).then(parser).catch( error => {
+      // in debug mode if error, then fixture
+      return fixture()
+    })
   }
 
   return Vue.http.get(settings).then(parser)

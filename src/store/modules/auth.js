@@ -35,7 +35,7 @@ export const mutations = {
 // actions
 export const actions = {
   login({ dispatch, store }, payload) {
-    var { login, password, redirect } = payload
+    var { login, password, callback = null } = payload
     var settings = {
       headers: { Authorization: `Basic ${btoa(login + ':' + password)}` },
     }
@@ -46,9 +46,16 @@ export const actions = {
     fetch.auth.login(settings).then( data => {
       data.password = password
       dispatch(CHECK_LOGIN, data)
-      redirect()
+
+      if (callback) { callback() }
+
       return true
-    }).catch( ({ data }) => {
+    }).catch( error => {
+      if (error.status === 401) {
+        // TODO this.$router.go({name: 'index'})
+      }
+
+      return error
     }).then(F7.hideIndicator)
   },
 
@@ -61,6 +68,14 @@ export const actions = {
     }).catch( error => {
       return error
     }).then(F7.hideIndicator)
+  },
+
+  reLogin({ actions, state }, { callback }) {
+    actions.login({
+      login: state.auth.login,
+      password: state.auth.password,
+      callback: callback,
+    })
   },
 
   clearAuth({ dispatch }) {

@@ -16,7 +16,7 @@ export default {
   }),
   route: {
     data() {
-      var number = this.$route.params.number
+      var number = this.$route.params.number.trim()
       store.actions.getCntInfo(number)
       return { number }
     },
@@ -29,11 +29,13 @@ export default {
     },
      // фильтрованные счета, в которых присутствует номер контейнера number
     bills() {
+      if ( !this.$get('number') ) { return [] }
+
       var bills = store.state.bills.data
-      var regexp = new RegExp(this.$get('number'), 'i')
+      var regexp = new RegExp(this.$get('number').trim(), 'i')
 
       // TODO: remove DEBUG to fixtures
-      return DEBUG ? bills : bills.filter( bill => regexp.test(bill.comment) )
+      return DEBUG ? bills : (bills.filter( bill => regexp.test(bill.comment) ) || [])
     },
   },
   watch: {

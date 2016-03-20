@@ -14,7 +14,7 @@ export default {
   mixins: [formatSumm],
   route: {
     data() {
-      var number = this.$route.params.number
+      var number = this.$route.params.number.trim()
       store.actions.getBillInfo(number)
       return { number }
     },

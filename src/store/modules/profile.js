@@ -26,13 +26,19 @@ export const mutations = {
 
 // actions
 export const actions = {
-  getProfile({ dispatch, state }) {
+  getProfile({ actions, dispatch, state }) {
 
     dispatch(SET_PROGRESS, true)
 
     fetch.profile().then( payload => {
       dispatch(KONTR_INFO, payload)
     }).catch( error => {
+      // reLogin !!!
+      if (error.status === 401) {
+        actions.reLogin({
+          callback: () => actions.getProfile()
+        })
+      }
       return error
     }).then( () => {
       dispatch(SET_PROGRESS, false)

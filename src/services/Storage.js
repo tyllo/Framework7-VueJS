@@ -13,7 +13,7 @@ export function get(name, defaults = null) {
   }
 
   if (!data) {
-    data = defaults
+    data = Object.assign({}, defaults)
     data && set(name, defaults)
   }
 

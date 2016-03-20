@@ -29,13 +29,19 @@ export const mutations = {
 
 // actions
 export const actions = {
-  getAdvance({ dispatch, state }, number) {
+  getAdvance({ actions, dispatch, state }) {
 
     dispatch(SET_PROGRESS, true)
 
     fetch.advance().then( payload => {
       dispatch(ADVANCE_INFO, payload)
     }).catch( error => {
+      // reLogin !!!
+      if (error.status === 401) {
+        actions.reLogin({
+          callback: () => actions.getAdvance()
+        })
+      }
       return error
     }).then( () => {
       dispatch(SET_PROGRESS, false)
