@@ -78,5 +78,5 @@ export default {
     pretty: config.isDevelope,
   },
 
-  devtool: config.isDevelope ? 'source-map' : false,
+  devtool: config.isDebug ? 'source-map' : false,
 }

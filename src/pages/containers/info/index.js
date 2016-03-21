@@ -35,7 +35,7 @@ export default {
       var regexp = new RegExp(this.$get('number').trim(), 'i')
 
       // TODO: remove DEBUG to fixtures
-      return DEBUG ? bills : (bills.filter( bill => regexp.test(bill.comment) ) || [])
+      return DEBUG ? bills : (bills.filter( bill => regexp.test(bill.comment) || [] ) || [])
     },
   },
   watch: {

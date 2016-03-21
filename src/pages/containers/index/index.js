@@ -21,7 +21,7 @@ export default {
         arrival: [],
       }
 
-      var data = store.state.containers.data
+      var data = store.state.containers.data || []
 
       return data.reduce( (containers, container) => {
         if (!container.date_out) {

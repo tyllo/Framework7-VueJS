@@ -7,7 +7,7 @@ export default {
   name,
   template: template({name}),
   computed: {
-    profile: () => store.state.profile.data,
+    profile: () => store.state.profile.data || [],
   },
   filters: {
     t(key) {

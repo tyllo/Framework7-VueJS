@@ -12,8 +12,8 @@ export default {
   mixins: [dateMixin],
   template: template(),
   computed: {
-    advance: () => store.state.advance.advance,
-    debt: () => store.state.advance.debt,
+    advance: () => store.state.advance.advance || [],
+    debt: () => store.state.advance.debt || [],
     summa: () => store.state.advance.summa,
     summa_bill: () => store.state.advance.summa_bill,
     orderName: () => store.state.order.advance,

@@ -12,7 +12,7 @@ import { router } from 'initials'
 import 'styles/main.scss'
 
 // clear bad cache from Storage
-if ((revision.branch !== 'dev') && (revision.count < 4)) {
+if (revision.count < 5) {
   Storage.clear()
 }
 

@@ -15,7 +15,7 @@ export default {
     orderName: () => store.state.order.bills,
     date_at: () => store.state.bills.date_at,
     date_to: () => store.state.bills.date_to,
-    bills: () => store.state.bills.data,
+    bills: () => store.state.bills.data || [],
   },
   events: {
     // search bill for number

@@ -7,7 +7,7 @@ export default {
   name,
   template: template({name}),
   computed: {
-    settings: () => store.state.settings,
+    settings: () => store.state.settings || [],
   },
   methods: {
     toggleNotify: (e) => store.actions.toggleNotify(e.target.name),

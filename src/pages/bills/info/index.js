@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     orderName: () => store.state.order.bill,
-    bill: () => store.state.bill.data,
+    bill: () => store.state.bill.data || [],
     title() {
       return this.$t('bills.header', {number: this.$get('number')})
     },
