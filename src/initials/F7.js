@@ -18,8 +18,8 @@ Object.assign(F7, new Framework7({
 
 // http://goo.gl/0VB8sl
 
-if (NODE_ENV === 'production') {
-  // Dom7('head').append(`<link rel="stylesheet" href="assets/styles/${platform}.css">`)
-}
+// if (NODE_ENV === 'production') {
+//   Dom7('head').append(`<link rel="stylesheet" href="assets/styles/${platform}.css">`)
+// }
 
 DEBUG && console.log(`Platform is <${platform}>`)

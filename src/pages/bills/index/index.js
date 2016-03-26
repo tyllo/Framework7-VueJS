@@ -20,8 +20,6 @@ export default {
   events: {
     // search bill for number
     ['search:bills'](number) {
-      DEBUG && console.log('search:bills', number)
-
       this.$route.router.go({
         name: 'bill/info',
         params: {number},

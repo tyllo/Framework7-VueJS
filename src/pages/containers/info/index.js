@@ -34,8 +34,9 @@ export default {
       var bills = store.state.bills.data
       var regexp = new RegExp(this.$get('number').trim(), 'i')
 
-      // TODO: remove DEBUG to fixtures
-      return DEBUG ? bills : (bills.filter( bill => regexp.test(bill.comment) || [] ) || [])
+      // TODO: remove this to fixtures
+      return store.state.auth.login === 'demo'
+        ? bills : bills.filter( bill => regexp.test(bill.comment) )
     },
   },
   watch: {

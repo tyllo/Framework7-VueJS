@@ -10,7 +10,7 @@ export default {
   name: name,
   template: template(),
   ready() {
-    DEBUG && console.log('---> init', name)
+    DEBUG && console.log('init', name)
 
     F7.init()
     var mainView = F7.addView(this.$els.view, {})

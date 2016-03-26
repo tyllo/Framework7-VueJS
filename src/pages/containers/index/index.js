@@ -49,8 +49,6 @@ export default {
   events: {
     // search container details
     ['search:containers'](number) {
-      DEBUG && console.log('search:containers', number)
-
       this.$route.router.go({
         name: 'container/info',
         params: {number},

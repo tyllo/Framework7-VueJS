@@ -21,7 +21,6 @@ export default res => load().then( ({ F7 }) => res({
   },
   events: {
     ['open:popup:order'] ({target, name}) {
-      DEBUG && console.log('open:popup:order')
       this.$set('name', name)
       F7.popover(this.$els.popover, target)
     }

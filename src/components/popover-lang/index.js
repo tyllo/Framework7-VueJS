@@ -16,11 +16,9 @@ export default res => load().then( ({ F7 }) => res({
   },
   events: {
     ['open:popup:langs'] (target) {
-      DEBUG && console.log('open:popup:langs')
       F7.popover(this.$els.popover, target)
     },
     ['open:actionSheet:langs'] (target) {
-      DEBUG && console.log('open:actionSheet:langs')
       this.openActionSheet()
     },
   },
