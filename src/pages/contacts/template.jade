@@ -1,7 +1,26 @@
+mixin component(item)
+  component(
+    :is='item.component',
+    :href.once='item.href',
+    :class.once='item.classLink',
+    :icon.once='item.icon',
+    :title.once='item.title',
+    :after.once='item.after',
+    :subtitle.once='item.subtitle',
+    :text.once='item.text')
+    block
+
 Page(v-el:page name=name).navbar-fixed
   navbar(title='contacts.title')
   .page-content
     .list-group(v-for='terminal in terminals')
       .content-block-title {{* terminal.title }}
       .list-block.media-list.clear-both
-        media-list(:list='terminal.list').icon-color-default
+        ul.icon-color-default
+          li(:class='item.class',
+            v-for='item in terminal.list | normilize')
+            +component(item)
+              ul(slot='accordion')
+                li(:class='item.class',
+                  v-for='item in item.content | normilize')
+                  +component(item)
