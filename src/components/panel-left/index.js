@@ -2,6 +2,7 @@ import load from 'promise?global,[name].promise!commons'
 import store from 'store'
 import menu from './menu'
 import style from './style.scss'
+import formatSumm from 'mixins/filters/formatSumm'
 import template from './template.jade'
 
 export let name = 'panel-left'
@@ -11,6 +12,7 @@ var image = '//vsct.info/assets/i/jpg/main_svcs_01.jpg'
 export default resolve => load().then( ({ isIos }) => resolve({
   template: template({name, style}),
   data: () => ({isIos, menu, image}),
+  mixins: [formatSumm],
   computed: {
     companyName: () => store.state.auth.name_expeditor,
     summa: () => store.state.advance.summa,

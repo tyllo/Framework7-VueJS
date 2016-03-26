@@ -6,9 +6,10 @@ item-content-accordion(
     ul
       li: item-content(:text.once='comment')
       li: item-content-link(
-        v-for="container in containers",
-        v-link='container | toCntInfo',
-        :title="$t('containers.header', {number: container})")
+        v-for="number in containerNumbers",
+        track-by="$index",
+        v-link='number | toCntInfo',
+        :title="$t('containers.header', {number: number})")
       li: item-content-link(
         class=style.link,
         v-link='number | toBillInfo',

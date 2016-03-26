@@ -16,7 +16,7 @@ export default {
   mixins: [formatSumm],
   template: template({name, style}),
   computed: {
-    containers() {
+    containerNumbers() {
       var pattern = /([A-Z]{4}[0-9]{7}(?![0-9]))/g
       var number = this.$route.params.number
       return this.$get('comment').match(pattern).filter( match => match !== number)

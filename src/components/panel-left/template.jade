@@ -8,7 +8,7 @@
         img(v-if='src', :src='src', alt='')
         icon(v-else, id='profile')
       .content-block(class=style.name) {{* companyName }}
-      .content-block(class=style.currency) {{* summa | summaTitle }}
+      .content-block(class=style.currency) {{* summa | formatSumm | summaTitle }}
 
   .list-group(v-for='pages in menu')
     .list-block.media-list.clear-both
