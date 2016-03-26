@@ -34,6 +34,7 @@ mixin item-content-link()
 
 //- if empty both lists containers
 .content-block(v-show='isEmptyContainers')
+  //- TODO - filter dates!!!
   p {{{ $t('containers.empty.containers', date_at, date_to) }}}
 
 template(v-if='containers.arrival.length')

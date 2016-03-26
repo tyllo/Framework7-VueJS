@@ -1,7 +1,7 @@
 item-content-accordion(
   :title="$t('bills.header', {number: number})",
   :subtitle="$t('bills.subtitle', {date: date})")
-  .badge.badge-clear(slot='after') {{ summa | formatSumm }} {{ currency }}
+  .badge.badge-clear(slot='after') {{* summa | formatSumm }} {{* currency }}
   .table-shadow(slot='accordion')
     ul
       li: item-content(:text.once='comment')

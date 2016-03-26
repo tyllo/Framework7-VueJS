@@ -2,6 +2,6 @@ Page(v-el:page name=name).navbar-fixed
   navbar(title='contacts.title')
   .page-content
     .list-group(v-for='terminal in terminals')
-      .content-block-title {{ terminal.title }}
+      .content-block-title {{* terminal.title }}
       .list-block.media-list.clear-both
         media-list(:list='terminal.list').icon-color-default

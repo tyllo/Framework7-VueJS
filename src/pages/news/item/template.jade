@@ -5,6 +5,6 @@ Page(v-el:page name=name).navbar-fixed
       v-el:image
       :src.once='newsItem.image',
       class=style.lazy)
-    .card-header.color-gray(class=style.date) {{ newsItem.date | dateFull }}
-    .content-block-title {{ newsItem.title }}
-    .content-block: p {{{ newsItem.content }}}
+    .card-header.color-gray(class=style.date) {{* newsItem.date | dateFull }}
+    .content-block-title {{* newsItem.title }}
+    .content-block: p {{{* newsItem.content }}}

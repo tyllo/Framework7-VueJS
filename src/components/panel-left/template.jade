@@ -7,8 +7,8 @@
       .content-block.text-center
         img(v-if='src', :src='src', alt='')
         icon(v-else, id='profile')
-      .content-block(class=style.name) {{ companyName }}
-      .content-block(class=style.currency) {{ summa | summaTitle }}
+      .content-block(class=style.name) {{* companyName }}
+      .content-block(class=style.currency) {{* summa | summaTitle }}
 
   .list-group(v-for='pages in menu')
     .list-block.media-list.clear-both
@@ -20,4 +20,4 @@
             :title='$t(page.title)')
             span.badge.bg-red(
               v-if='page.badge',
-              slot='after') {{ page.badge }}
+              slot='after') {{* page.badge }}

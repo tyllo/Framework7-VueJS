@@ -1,5 +1,6 @@
 import store from 'store'
 import i18n from './i18n'
+import formatSumm from 'mixins/filters/formatSumm'
 import dateMixin from 'mixins/filters/date'
 import template from './template.jade'
 
@@ -9,7 +10,7 @@ store.actions.setLocal({name, i18n})
 
 export default {
   name,
-  mixins: [dateMixin],
+  mixins: [dateMixin, formatSumm],
   template: template(),
   computed: {
     advance: () => store.state.advance.advance || [],

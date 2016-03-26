@@ -2,6 +2,7 @@
   p {{ $t('bills.empty.dates') }}
 
 .content-block(v-show='date_at && date_to && !bills.length')
+  //- TODO - filter dates!!!
   p {{{ $t('bills.empty.bills', date_at, date_to) }}}
 
 .content-block(v-show='date_at && date_to && bills.length')

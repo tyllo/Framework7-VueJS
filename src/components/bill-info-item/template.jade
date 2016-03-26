@@ -1,7 +1,7 @@
 item-content-accordion(
   :title='title | formatSumm',
   :text.once='tovar')
-  .badge(slot='after') {{ count }}
+  .badge(slot='after') {{* count }}
   .table-shadow(slot='accordion')
     ul
       li: item-content

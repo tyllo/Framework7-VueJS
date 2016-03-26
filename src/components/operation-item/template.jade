@@ -2,7 +2,7 @@ item-content-accordion(
   v-if='kontr',
   :icon.once='operation',
   :title.once='title')
-  .badge.badge-clear(slot='after') {{ date }}
+  .badge.badge-clear(slot='after') {{* date }}
 
   .table-shadow(slot='accordion',)
     container-item-table(
@@ -13,4 +13,4 @@ item-content(
   v-else
   :icon.once='operation',
   :title.once='title')
-  .badge.badge-clear(slot='after') {{ date }}
+  .badge.badge-clear(slot='after') {{* date }}

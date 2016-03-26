@@ -5,6 +5,6 @@ item-content-accordion(
   :after='size')
   icon(slot='icon', :id.once='type', class=style.icon)
   template(slot='after')
-    .badge.badge-clear {{ type }}
-    .badge(:class.once="{'bg-red': load}") {{ size | parseSize }}
+    .badge.badge-clear {{* type }}
+    .badge(:class.once="{'bg-red': load}") {{* size | parseSize }}
   slot(slot='accordion')

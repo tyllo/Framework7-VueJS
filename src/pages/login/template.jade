@@ -9,16 +9,16 @@ Page(v-el:page name=name).no-navbar.no-toolbar.no-swipeback
             .item-inner
               .item-title.label {{ $t('login.username.label') }}
               .item-input
-                input(type='text' autocomplete='off'
-                  @focus='onFocus' v-model!='login'
-                  placeholder="{{ $t('login.username.placeholder') }}")
+                input(type='text', autocomplete='off',
+                  @focus='onFocus', v-model!='login',
+                  :placeholder.once="$t('login.username.placeholder')")
           li.item-content
             .item-inner
               .item-title.label {{ $t('login.password.label') }}
               .item-input
-                input(type='password' autocomplete='off'
-                  @focus='onFocus' v-model!='password'
-                  placeholder="{{ $t('login.username.placeholder') }}")
+                input(type='password', autocomplete='off',
+                  @focus='onFocus', v-model!='password',
+                  :placeholder.once="$t('login.username.placeholder')")
       .content-block: .list-block-label.color-red {{ message }}
       .content-block.color-gray {{ $t('login.description') }}
       .content-block

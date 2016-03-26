@@ -13,21 +13,21 @@
 
   .row(v-if='date_in')
     .col-33 {{ $t('containers.arrival') }}
-    .col-66 {{ date_in | dateFull }} #[.badge {{ sklad_in | stock}}]
+    .col-66 {{* date_in | dateFull }} #[.badge {{* sklad_in | stock }}]
 
   .row(v-if='date_out')
     .col-33 {{ $t('containers.expense') }}
-    .col-66 {{ date_out | dateFull }} #[.badge {{ sklad_out | stock}}]
+    .col-66 {{* date_out | dateFull }} #[.badge {{* sklad_out | stock }}]
 
   .row(v-if='transport')
     .col-33 {{ $t('containers.transport') }}
-    .col-66 {{ transport }}
+    .col-66 {{* transport }}
 
   .row(v-if='kontr')
     .col-33 {{ $t('containers.kontr') }}
-    .col-66 {{ kontr }}
+    .col-66 {{* kontr }}
 
   .row(v-if='konos')
     .col-33 {{ $t('containers.konos') }}
-    .col-66 {{ konos }}
+    .col-66 {{* konos }}
 slot
