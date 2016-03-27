@@ -11,6 +11,9 @@ export default {
     'after',
     'subtitle',
     'text',
+    // TODO - for remove 'component is instance'
+    'class',
+    'href',
   ],
   template: template(),
   partials: { partial: partial() },

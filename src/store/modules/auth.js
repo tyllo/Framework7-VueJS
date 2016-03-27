@@ -6,7 +6,7 @@ import { CHECK_LOGIN, CHECK_EXIT, RESET_AUTH } from 'store/mutation-types'
 export let name = 'auth'
 
 var defaults = {
-  login: null,
+  login: '',
   password: '',
   message: '',
   secret: '',
@@ -34,12 +34,14 @@ export const mutations = {
 
 // actions
 export const actions = {
-  login({ dispatch, store }, payload) {
+  login({ actions, dispatch, store }, payload) {
     var { login, password, callback = null } = payload
+
+    if (!login && !password) { return }
+
     var settings = {
       headers: { Authorization: `Basic ${btoa(login + ':' + password)}` },
     }
-
     F7.showIndicator()
     dispatch(CHECK_LOGIN, {login, password})
 
@@ -50,12 +52,13 @@ export const actions = {
       if (callback) { callback() }
 
       return true
-    }).catch( error => {
-      if (error.status === 401) {
-        // TODO this.$router.go({name: 'index'})
+    }).catch( ({ data, status }) => {
+      if (status === 401) {
+        dispatch(CHECK_LOGIN, data)
+        // router.go({name: 'login'})
       }
 
-      return error
+      return true
     }).then(F7.hideIndicator)
   },
 
@@ -63,11 +66,12 @@ export const actions = {
     F7.showIndicator()
     dispatch(RESET_AUTH, 'login')
 
-    fetch.auth.logout().then( data => {
-      dispatch(CHECK_EXIT, data)
-    }).catch( error => {
+    fetch.auth.logout().catch( error => {
       return error
-    }).then(F7.hideIndicator)
+    }).then( () => {
+      dispatch(CHECK_EXIT)
+      F7.hideIndicator()
+    })
   },
 
   reLogin({ actions, state }, { callback }) {

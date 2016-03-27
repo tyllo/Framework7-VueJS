@@ -11,11 +11,19 @@ Object.assign(F7, new Framework7({
   // hideTabbarOnPageScroll: true,
   animateNavBackIcon: isIos,
   swipePanel: 'left',
-  swipePanelActiveArea: '20',
+  // swipePanelActiveArea: '100',
   // router: false,
   init: false,
+  scrollTopOnNavbarClick: true,
+  // for performance
+  cache: false,
+  sortable: false,
+  swipeout: false,
+  swipeBackPageAnimateShadow: false,
+  swipeBackPageAnimateOpacity: false,
 }))
 
+console.log(F7)
 // http://goo.gl/0VB8sl
 
 // if (NODE_ENV === 'production') {

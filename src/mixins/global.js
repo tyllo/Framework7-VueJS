@@ -8,6 +8,6 @@ export default {
     DEBUG && console.log('init component %s', this.$options.name)
     var mainView = store.mainView
     mainView.router.loadContent(this.$els.page)
-    F7.params.swipePanel = this.$route.panel
+    F7.params.swipePanel = 'left' // this.$route.panel
   },
 }

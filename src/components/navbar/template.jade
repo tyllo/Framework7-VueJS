@@ -12,7 +12,7 @@ mixin right()
 .navbar
   .navbar-inner
     .left: +left()
-    .center: +center()
+    .center(class=style.center): +center()
     .right: +right()
   .progressbar-infinite(
     v-if='progress',

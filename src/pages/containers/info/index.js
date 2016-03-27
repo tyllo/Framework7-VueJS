@@ -1,5 +1,3 @@
-/* globals DEBUG */
-
 import store from 'store'
 import dateMixin from 'mixins/filters/date'
 import template from './template.jade'
@@ -31,7 +29,7 @@ export default {
     bills() {
       if ( !this.$get('number') ) { return [] }
 
-      var bills = store.state.bills.data
+      var bills = store.state.bills.data || []
       var regexp = new RegExp(this.$get('number').trim(), 'i')
 
       // TODO: remove this to fixtures
@@ -42,6 +40,8 @@ export default {
   watch: {
     container() {
       var dates = this.$get('container').map(item => item.date)
+
+      if (dates === []) { return }
 
       store.actions.getBillList([
         Math.min.apply(Math, dates),

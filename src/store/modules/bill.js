@@ -10,7 +10,6 @@ var defaults = {
   number: null,
   message: '',
   data: [],
-  cache: {},
 }
 
 // initial state
