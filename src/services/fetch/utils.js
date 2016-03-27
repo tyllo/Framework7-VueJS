@@ -1,5 +1,7 @@
+/* globals DEBUG */
+
 import { Vue } from 'commons'
-import store from 'store'
+import store from 'vuex/store'
 
 export const URL = {
   SERVER: 'http://project-vsctxdraw.c9users.io',
@@ -32,7 +34,9 @@ export function fetch(settings = {}, params) {
 
   extendSettings(settings, params)
 
-  if (store.state.auth.login === 'demo') {
+  // TODO: remove this to another point!!!
+  var auth = store.state.auth
+  if (auth.login === 'demo' && auth.password === 'demo') {
     return fixture()
   }
 

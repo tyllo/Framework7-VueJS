@@ -5,8 +5,7 @@ var name = 'notFound'
 
 export default {
   name,
-  template: template({style}),
-  data: () => ({notFound}),
+  template: template({ name, style }),
   methods: {
     back: () => window.history.back(),
   },

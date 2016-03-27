@@ -20,9 +20,9 @@ export function login() {
     ready_check: randomNumb % 2,
     create_at: randomDate(),
     login: 'demo',
-    check_cnt: randomNumb % 2,
-    check_doc: randomNumb % 2,
-    check_zayav: randomNumb % 2,
+    check_cnt: randomNumb() % 2,
+    check_doc: randomNumb() % 2,
+    check_zayav: randomNumb() % 2,
     name_expeditor: 'Demo name',
   }))
 }

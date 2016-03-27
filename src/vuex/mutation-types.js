@@ -1,4 +1,3 @@
-export const SET_LOCAL = 'SET_LOCAL'
 export const CHANGE_LOCAL = 'CHANGE_LOCAL'
 export const SET_SETTINGS = 'SET_SETTINGS'
 export const TOGGLE_NOTIFY_BY = 'TOGGLE_NOTIFY_BY'

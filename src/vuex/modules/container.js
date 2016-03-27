@@ -1,7 +1,7 @@
 import Storage from 'services/Storage'
 import Cache from 'services/CacheItem'
 import fetch from 'services/fetch'
-import { CNT_INFO, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
+import { CNT_INFO, SET_PROGRESS, CHECK_EXIT } from '../mutation-types'
 
 export let name = 'container'
 
@@ -17,24 +17,22 @@ export const state = Storage.get(name, defaults)
 
 // mutations
 export const mutations = {
-  [CNT_INFO]({ container }, payload) {
-    container.data = payload.data
-    container.number = payload.number
-    container.message = payload.message
+  [CNT_INFO](state, payload) {
+    state.data = payload.data
+    state.number = payload.number
+    state.message = payload.message
 
-    cache.set(payload.number, container.data)
-
-    Storage.set(name, container)
+    Storage.set(name, state)
   },
 
   [CHECK_EXIT](state) {
-    state.container = Object.assign({}, defaults)
+    state = Object.assign({}, defaults)
   },
 }
 
 // actions
 export const actions = {
-  getCntInfo({ actions, dispatch, state }, number) {
+  getCntInfo({ actions, dispatch }, number) {
     var settings = { params: { number } }
 
     if (cache.get(number)) {
@@ -46,6 +44,8 @@ export const actions = {
     dispatch(SET_PROGRESS, true)
 
     fetch.container.info(settings).then( payload => {
+      cache.set(number, payload.data)
+
       dispatch(CNT_INFO, {
         number,
         data: payload.data,

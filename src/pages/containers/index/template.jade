@@ -23,7 +23,7 @@ mixin container-item-table()
 mixin item-content-link()
   item-content-link(
     class=style.link,
-    v-link='container | link',
+    v-link='linkToContainer(container)',
     :title="$t('containers.more')")
 
 .content-block(v-show='date_at && date_to')

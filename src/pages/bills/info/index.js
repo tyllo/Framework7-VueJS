@@ -1,5 +1,6 @@
-import store from 'store'
+import { getBillInfo } from 'vuex/actions'
 import formatSumm from 'mixins/filters/formatSumm'
+
 import template from './template.jade'
 import style from './style.scss'
 
@@ -7,30 +8,38 @@ var name = 'bill-info'
 
 export default {
   name,
+  mixins: [formatSumm],
   template: template({name, style}),
+
   data: () => ({
     number: '',
   }),
-  mixins: [formatSumm],
+
   route: {
     data() {
       var number = this.$route.params.number.trim()
-      store.actions.getBillInfo(number)
+      this.getBillInfo(number)
       return { number }
     },
   },
-  computed: {
-    orderName: () => store.state.order.bill,
-    bill: () => store.state.bill.data || [],
-    title() {
-      return this.$t('bills.header', {number: this.$get('number')})
+
+  vuex: {
+    actions: { getBillInfo },
+
+    getters: {
+      orderName: state => state.order.bill,
+      bill: state => state.bill.data || [],
+      total: state => state.bill.data.reduce( (total, item) => {
+        return +total + +item.summands
+      }, 0).toFixed(2),
     },
-    total() {
-      return this.$t('bills.total', {
-        total: this.$get('bill').reduce( (total, item) => {
-          return +total + +item.summands
-        }, 0).toFixed(2)
+  },
+
+  computed: {
+    title() {
+      return this.$t('bills.header', {
+        number: this.$get('number')
       })
     },
-  }
+  },
 }

@@ -1,14 +1,16 @@
-import store from 'store'
-import i18n from './i18n'
+import { updateNews } from 'vuex/actions'
 
 var name = 'news'
-
-store.actions.setLocal({name, i18n})
 
 export default {
   name: name,
   template: '<router-view></router-view>',
+
+  vuex: {
+    actions: { updateNews },
+  },
+
   created() {
-    store.actions.updateNews()
+    this.updateNews()
   },
 }

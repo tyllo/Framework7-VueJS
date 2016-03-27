@@ -1,5 +1,4 @@
 import load from 'promise?global,[name].promise!commons'
-import store from 'store'
 import template from './template.jade'
 import style from './style.scss'
 
@@ -11,11 +10,14 @@ export default res => load().then( ({ F7 }) => res({
     state: { type: String, default: 'index' },
   },
   template: template({name, style}),
-  computed: {
-    progress() {
-      return store.state.progress
-    },
 
+  vuex: {
+    getters: {
+      progress: state => state.progress.active,
+    },
+  },
+
+  computed: {
     isIndex() {
       return this.state === 'index'
     },
@@ -32,7 +34,7 @@ export default res => load().then( ({ F7 }) => res({
       if (this.isIndex) {
         F7.openPanel('left')
       } else {
-        window.history.back()
+        this.$router.go(window.history.back())
       }
     },
   },

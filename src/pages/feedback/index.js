@@ -1,11 +1,8 @@
 import { F7, isAndroid } from 'commons'
-import store from 'store'
-import i18n from './i18n'
+
 import template from './template.jade'
 
 var name = 'feedback'
-
-store.actions.setLocal({name, i18n})
 
 export default {
   name,

@@ -22,9 +22,9 @@ Page(v-el:page name=name).navbar-fixed
       .content-block-title {{ $t('containers.title.bills') }}
 
       // show if billed
-      .list-block.media-list(v-if='bills.length')
+      .list-block.media-list(v-if='billsFiltered.length')
         ul.icon-color-brend(class=style.title)
-          li.accordion-item(v-for="bill in bills | orderBy orderName")
+          li.accordion-item(v-for="bill in billsFiltered | orderBy orderName")
             bill-item(
               :date='bill.date | dateFull',
               :number.once='bill.number',

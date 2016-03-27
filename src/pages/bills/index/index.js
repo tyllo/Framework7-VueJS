@@ -1,7 +1,6 @@
-/* globals DEBUG */
-
-import store from 'store'
+import { getBillList } from 'vuex/actions'
 import dateMixin from 'mixins/filters/date'
+
 import template from './template.jade'
 import style from './style.scss'
 
@@ -11,21 +10,30 @@ export default {
   name,
   mixins: [dateMixin],
   template: template({name, style}),
-  computed: {
-    orderName: () => store.state.order.bills,
-    date_at: () => store.state.bills.date_at,
-    date_to: () => store.state.bills.date_to,
-    bills: () => store.state.bills.data || [],
+
+  vuex: {
+    actions: { getBillList },
+
+    getters: {
+      orderName: state => state.order.bills,
+      date_at: state => state.bills.date_at,
+      date_to: state => state.bills.date_to,
+      bills: state => state.bills.data || [],
+    },
   },
+
   events: {
     // search bill for number
     ['search:bills'](number) {
-      this.$route.router.go({
+      this.$router.go({
         name: 'bill/info',
-        params: {number},
+        params: { number },
       })
     },
+
     // search bills for date rang
-    ['dates:bills']: store.actions.getBillList,
+    ['dates:bills'](dates) {
+      this.getBillList(dates)
+    },
   },
 }

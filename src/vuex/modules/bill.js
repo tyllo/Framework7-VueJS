@@ -1,7 +1,7 @@
 import Storage from 'services/Storage'
 import Cache from 'services/CacheItem'
 import fetch from 'services/fetch'
-import { BILL_INFO, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
+import { BILL_INFO, CHECK_EXIT, SET_PROGRESS } from '../mutation-types'
 
 export let name = 'bill'
 
@@ -17,24 +17,22 @@ export const state = Storage.get(name, defaults)
 
 // mutations
 export const mutations = {
-  [BILL_INFO]({ bill }, payload) {
-    bill.data = payload.data
-    bill.number = payload.number
-    bill.message = payload.message
+  [BILL_INFO](state, payload) {
+    state.data = payload.data
+    state.number = payload.number
+    state.message = payload.message
 
-    cache.set(payload.number, bill.data)
-
-    Storage.set(name, bill)
+    Storage.set(name, state)
   },
 
   [CHECK_EXIT](state) {
-    state.bill = Object.assign({}, defaults)
+    state = Object.assign({}, defaults)
   },
 }
 
 // actions
 export const actions = {
-  getBillInfo({ actions, dispatch, state }, number) {
+  getBillInfo({ actions, dispatch }, number) {
     var settings = { params: { number } }
 
     if (cache.get(number)) {
@@ -46,6 +44,8 @@ export const actions = {
     dispatch(SET_PROGRESS, true)
 
     fetch.bill.info(settings).then( payload => {
+      cache.set(number, payload.data)
+
       dispatch(BILL_INFO, {
         number,
         data: payload.data,
@@ -62,16 +62,4 @@ export const actions = {
       dispatch(SET_PROGRESS, false)
     })
   },
-}
-
-/************************************************
-                   helpers
-===============================================*/
-
-function getFromCache({ cache }, number) {
-  return cache[number] ? {
-    number,
-    data: cache[number],
-    message: `Get ${ name } ${ number } from cache`,
-  } : null
 }

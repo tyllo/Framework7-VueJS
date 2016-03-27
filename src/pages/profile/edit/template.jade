@@ -5,7 +5,7 @@ Page(v-el:page name=name).navbar-fixed
     .list-block.inputs-list.clear-both
       ul: li(v-for='(key, value) in profile')
         item-content
-          .label(slot='title') {{* key | t }}
+          .label(slot='title') {{ toProfileName(key) }}
           template(slot='input')
             .item-input.item-input-field
               textarea.resizable(

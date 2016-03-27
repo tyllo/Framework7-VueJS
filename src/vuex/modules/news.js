@@ -1,6 +1,6 @@
 import Storage from 'services/Storage'
 import fetch from 'services/fetch'
-import { UPDATE_NEWS, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
+import { UPDATE_NEWS, SET_PROGRESS, CHECK_EXIT } from '../mutation-types'
 
 export let name = 'news'
 
@@ -15,16 +15,16 @@ export const state = Storage.get(name, defaults)
 
 // mutations
 export const mutations = {
-  [UPDATE_NEWS]({news}, data) {
-    news.list = data
-    news.new_count = data.length - news.count
-    news.count = data.length
+  [UPDATE_NEWS](state, data) {
+    state.list = data
+    state.new_count = data.length - state.count
+    state.count = data.length
 
-    Storage.set(name, news)
+    Storage.set(name, state)
   },
 
   [CHECK_EXIT](state) {
-    state.news = Object.assign({}, defaults)
+    state = Object.assign({}, defaults)
   },
 }
 

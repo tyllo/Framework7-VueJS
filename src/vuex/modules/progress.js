@@ -1,14 +1,16 @@
-import { SET_PROGRESS } from 'store/mutation-types'
+import { SET_PROGRESS } from '../mutation-types'
 
 export let name = 'progress'
 
 // initial state
-export const state = false
+export const state = {
+  active: false,
+}
 
 // mutations
 export const mutations = {
   [SET_PROGRESS](state, flag) {
-    state.progress = flag
+    state.active = flag
   },
 }
 

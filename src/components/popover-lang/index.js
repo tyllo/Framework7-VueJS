@@ -1,7 +1,6 @@
-/* globals DEBUG */
-
 import load from 'promise?global,[name].promise!commons'
-import store from 'store'
+import { changeLang } from 'vuex/actions'
+
 import template from './template.jade'
 import style from './style.scss'
 
@@ -9,11 +8,15 @@ export let name = 'popover-lang'
 
 export default res => load().then( ({ F7 }) => res({
   template: template({name, style}),
-  computed: {
-    langs() {
-      return store.state.locales.langs
-    }
+
+  vuex: {
+    actions: { changeLang },
+
+    getters: {
+      langs: state => state.locales.langs
+    },
   },
+
   events: {
     ['open:popup:langs'] (target) {
       F7.popover(this.$els.popover, target)
@@ -22,11 +25,13 @@ export default res => load().then( ({ F7 }) => res({
       this.openActionSheet()
     },
   },
+
   methods: {
     changeLang(lang) {
       F7.closeModal(this.$els.popover)
-      store.actions.changeLang(lang)
+      this.changeLang(lang)
     },
+
     openActionSheet() {
       var buttons = this.$get('langs').map( lang => ({
         text: lang.value,

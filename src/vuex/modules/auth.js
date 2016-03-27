@@ -1,7 +1,7 @@
 import { F7 } from 'commons'
 import Storage from 'services/Storage'
 import fetch from 'services/fetch'
-import { CHECK_LOGIN, CHECK_EXIT, RESET_AUTH } from 'store/mutation-types'
+import { CHECK_LOGIN, CHECK_EXIT, RESET_AUTH } from '../mutation-types'
 
 export let name = 'auth'
 
@@ -18,23 +18,23 @@ export const state = Storage.get(name, defaults)
 // mutations
 export const mutations = {
   [CHECK_LOGIN](state, data) {
-    state.auth = data // Object.assign(state.auth, data)
-    Storage.set(name, state.auth)
+    state = Object.assign(state, data)
+    Storage.set(name, state)
   },
 
   [CHECK_EXIT](state) {
     Storage.clear()
-    state.auth = Object.assign({}, defaults)
+    state = Object.assign({}, defaults)
   },
 
-  [RESET_AUTH]({ auth }, name) {
-    auth[name] = null
+  [RESET_AUTH](state, name) {
+    state[name] = null
   },
 }
 
 // actions
 export const actions = {
-  login({ actions, dispatch, store }, payload) {
+  login({ dispatch }, payload) {
     var { login, password, callback = null } = payload
 
     if (!login && !password) { return }
@@ -42,6 +42,7 @@ export const actions = {
     var settings = {
       headers: { Authorization: `Basic ${btoa(login + ':' + password)}` },
     }
+
     F7.showIndicator()
     dispatch(CHECK_LOGIN, {login, password})
 
@@ -55,14 +56,14 @@ export const actions = {
     }).catch( ({ data, status }) => {
       if (status === 401) {
         dispatch(CHECK_LOGIN, data)
-        // router.go({name: 'login'})
+        // TODO: router.go({name: 'login'})
       }
 
       return true
     }).then(F7.hideIndicator)
   },
 
-  logout({ dispatch, state }) {
+  logout({ dispatch }) {
     F7.showIndicator()
     dispatch(RESET_AUTH, 'login')
 
@@ -75,6 +76,7 @@ export const actions = {
   },
 
   reLogin({ actions, state }, { callback }) {
+    console.log('>>> state =', state)
     actions.login({
       login: state.auth.login,
       password: state.auth.password,

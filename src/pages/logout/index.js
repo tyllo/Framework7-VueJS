@@ -1,16 +1,18 @@
-import store from 'store'
-import i18n from './i18n'
+import { logout } from 'vuex/actions'
 
 var name = 'logout'
 
-store.actions.setLocal({name, i18n})
-
 export default {
   name,
+
   route: {
-    activate({redirect}) {
-      store.actions.logout()
+    activate({ redirect }) {
+      this.logout()
       redirect({name: 'index'})
     },
+  },
+
+  vuex: {
+    actions: { logout },
   },
 }

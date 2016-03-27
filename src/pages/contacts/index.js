@@ -1,8 +1,6 @@
 import * as dryTerminal from './dryTerminal'
 import * as seaTerminal from './seaTerminal'
 
-import store from 'store'
-import i18n from './i18n'
 import template from './template.jade'
 
 var name = 'contacts'
@@ -21,15 +19,16 @@ var typeList = {
   },
 }
 
-store.actions.setLocal({name, i18n})
-
 export default {
   name,
-  template: template({name}),
+  template: template({ name }),
+
   data: () => ({
     terminals: [seaTerminal, dryTerminal]
   }),
+
   filters: {
+    // TODO: remove it to utils
     normilize(list) {
       return list.map( item => {
         var type = item.type

@@ -1,5 +1,5 @@
-import store from 'store'
 import dateMixin from 'mixins/filters/date'
+
 import style from './style.scss'
 import template from './template.jade'
 
@@ -9,8 +9,11 @@ export default {
   name,
   mixins: [dateMixin],
   template: template({name, style}),
-  computed: {
-    newsList: () => store.state.news.list,
+
+  vuex: {
+    getters: {
+      newsList: state => state.news.list,
+    },
   },
   filters: {
     background(url) {

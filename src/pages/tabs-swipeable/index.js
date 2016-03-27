@@ -10,7 +10,8 @@ var name = 'tabs'
 
 export default {
   name: name,
-  template: template({name}),
+  template: template({ name }),
+
   data: () => ({
     tab: 'containers',
     showExtendNavbar: false,
@@ -20,6 +21,13 @@ export default {
       sort: false,
     },
   }),
+
+  route: {
+    data() {
+      return {tab: this.$route.params.tab}
+    }
+  },
+
   ready() {
     this.$set('showExtendNavbar', this.$get('tab') !== 'advance' ? 1 : 0)
 
@@ -38,11 +46,7 @@ export default {
       this.$set('showExtendNavbar', false)
     })
   },
-  route: {
-    data() {
-      return {tab: this.$route.params.tab}
-    }
-  },
+
   watch: {
     // resolve to tab
     tab() {
@@ -50,13 +54,16 @@ export default {
       // scroll(0, 0)
     }
   },
+
   methods: {
     onShowCalendar() {
       this.$set('show.calendar', true)
     },
+
     onShowSearch() {
       this.$set('show.search', true)
     },
+
     onShowOrder() {
       this.$root.$broadcast('open:popup:order', {
         target: this.$els.popup,
@@ -64,6 +71,7 @@ export default {
       })
     },
   },
+
   components: {
     Containers,
     Bills,

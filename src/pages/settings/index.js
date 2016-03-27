@@ -1,23 +1,27 @@
-import store from 'store'
-import i18n from './i18n'
+import { getSettings } from 'vuex/actions'
 import template from './template.jade'
 
 var name = 'settings'
 
-store.actions.setLocal({name, i18n})
-
 export default {
   name,
   template: template(),
+
   route: {
     activate() {
-      store.actions.getSettings()
+      this.getSettings()
     },
   },
+
+  vuex: {
+    actions: { getSettings },
+  },
+
   computed: {
     isIndex() { return this.$route.name === 'settings/index' },
     button() { return this.isIndex ? 'create' : 'check' },
   },
+
   methods: {
     action() {
       if (this.isIndex) {

@@ -5,5 +5,5 @@ Page(v-el:page name=name).navbar-fixed
    .list-block.media-list.clear-both
       ul: li(v-for='(key, title) in profile')
         item-content(
-          :title='key | t',
+          :title='toProfileName(key)',
           :text.once='title')

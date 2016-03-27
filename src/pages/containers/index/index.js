@@ -1,7 +1,6 @@
-/* globals DEBUG */
-
-import store from 'store'
+import { getCntList } from 'vuex/actions'
 import dateMixin from 'mixins/filters/date'
+
 import template from './template.jade'
 import style from './style.scss'
 
@@ -11,50 +10,62 @@ export default {
   name,
   mixins: [dateMixin],
   template: template({name, style}),
-  computed: {
-    date_at: () => store.state.containers.date_at,
-    date_to: () => store.state.containers.date_to,
-    orderName: () => store.state.order.containers,
-    containers() {
-      var containers = {
-        expense: [],
-        arrival: [],
-      }
 
-      var data = store.state.containers.data || []
+  vuex: {
+    actions: { getCntList },
 
-      return data.reduce( (containers, container) => {
-        if (!container.date_out) {
-          containers.arrival.push(container)
-        } else {
-          containers.expense.push(container)
+    getters: {
+      date_at: state => state.containers.date_at,
+      date_to: state => state.containers.date_to,
+      orderName: state => state.order.containers,
+      containers: state => {
+        var data = state.containers.data || []
+        var containers = {
+          expense: [],
+          arrival: [],
         }
 
-        return containers
-      }, containers)
+        return data.reduce( (containers, container) => {
+          if (!container.date_out) {
+            containers.arrival.push(container)
+          } else {
+            containers.expense.push(container)
+          }
+
+          return containers
+        }, containers)
+      },
     },
+  },
+
+  computed: {
     isEmptyContainers() {
       var { expense, arrival } = this.$get('containers')
       return !(expense.length || arrival.length) && this.$get('date_at') && this.$get('date_to')
     },
   },
-  filters: {
-    link({number}) {
+
+  methods: {
+    linkToContainer({number}) {
       return {
         name: 'container/info',
         params: { number: number }
       }
     },
   },
+
   events: {
     // search container details
     ['search:containers'](number) {
       this.$route.router.go({
         name: 'container/info',
-        params: {number},
+        params: { number },
       })
     },
+
     // search containers for date rang
-    ['dates:containers']: store.actions.getCntList,
+    ['dates:containers'](dates) {
+      this.getCntList(dates)
+    },
   },
 }

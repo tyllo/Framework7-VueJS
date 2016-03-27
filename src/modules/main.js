@@ -2,7 +2,7 @@
 
 import load from 'promise?global,[name].promise!commons'
 import style from 'promise?global,[name].promise!android'
-import store from 'store'
+import store from 'vuex/store'
 import Storage from 'services/Storage'
 import app from 'modules/app'
 

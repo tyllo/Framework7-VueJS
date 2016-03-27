@@ -1,12 +1,15 @@
 import Storage from 'services/Storage'
 import fetch from 'services/fetch'
-import { KONTR_INFO, SET_PROGRESS, CHECK_EXIT } from 'store/mutation-types'
+import { ADVANCE_INFO, CHECK_EXIT, SET_PROGRESS } from '../mutation-types'
 
-export let name = 'profile'
+export let name = 'advance'
 
 var defaults = {
   message: '',
-  data: {},
+  summa: '',
+  summa_bill: '',
+  advance: [],
+  debt: [],
 }
 
 // initial state
@@ -14,29 +17,28 @@ export const state = Storage.get(name, defaults)
 
 // mutations
 export const mutations = {
-  [KONTR_INFO](state, payload) {
-    state.profile = payload
-    Storage.set(name, state.profile)
+  [ADVANCE_INFO](state, payload) {
+    state = payload
+    Storage.set(name, state)
   },
 
   [CHECK_EXIT](state) {
-    state.profile = Object.assign({}, defaults)
+    state = Object.assign({}, defaults)
   },
 }
 
 // actions
 export const actions = {
-  getProfile({ actions, dispatch, state }) {
-
+  getAdvance({ /*actions,*/ dispatch }) {
     dispatch(SET_PROGRESS, true)
 
-    fetch.profile().then( payload => {
-      dispatch(KONTR_INFO, payload)
+    fetch.advance().then( payload => {
+      dispatch(ADVANCE_INFO, payload)
     }).catch( error => {
       // reLogin !!!
       if (error.status === 401) {
         actions.reLogin({
-          callback: () => actions.getProfile()
+          callback: () => actions.getAdvance()
         })
       }
       return error

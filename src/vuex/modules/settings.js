@@ -5,7 +5,7 @@ import {
   TOGGLE_NOTIFY_BY,
   SET_PROGRESS,
   CHECK_EXIT,
-} from 'store/mutation-types'
+} from '../mutation-types'
 
 export const name = 'settings'
 
@@ -27,23 +27,23 @@ export const state = Storage.get(name, defaults)
 // mutations
 export const mutations = {
   [SET_SETTINGS](state, payload) {
-    state.settings = payload
-    Storage.set(name, state.settings)
+    state = payload
+    Storage.set(name, state)
   },
 
-  [TOGGLE_NOTIFY_BY]({ settings }, type) {
-    settings.notifyBy[type] = !settings.notifyBy[type]
-    Storage.set(name, settings)
+  [TOGGLE_NOTIFY_BY](state, type) {
+    state.notifyBy[type] = !state.notifyBy[type]
+    Storage.set(name, state)
   },
 
   [CHECK_EXIT](state) {
-    state.settings = Object.assign({}, defaults)
+    state = Object.assign({}, defaults)
   },
 }
 
 // actions
 export const actions = {
-  getSettings({ actions, dispatch, state }) {
+  getSettings({ actions, dispatch }) {
 
     dispatch(SET_PROGRESS, true)
 
@@ -63,7 +63,7 @@ export const actions = {
   },
 
   // TODO: made actions for get and update settings from server
-  updateSettings({ dispatch, state }, data) {
+  updateSettings({ dispatch }, data) {
   },
 
   toggleNotify({ dispatch }, type) {

@@ -23,9 +23,7 @@ Object.assign(F7, new Framework7({
   swipeBackPageAnimateOpacity: false,
 }))
 
-console.log(F7)
 // http://goo.gl/0VB8sl
-
 // if (NODE_ENV === 'production') {
 //   Dom7('head').append(`<link rel="stylesheet" href="assets/styles/${platform}.css">`)
 // }

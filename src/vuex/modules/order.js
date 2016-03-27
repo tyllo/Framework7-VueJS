@@ -1,5 +1,5 @@
 import Storage from 'services/Storage'
-import { CHANGE_ORDER } from 'store/mutation-types'
+import { CHANGE_ORDER } from '../mutation-types'
 
 export let name = 'order'
 var defaults = {
@@ -17,9 +17,8 @@ export const state = Storage.get(name, defaults)
 export const mutations = {
   // общая для сортировки
   [CHANGE_ORDER](state, {orderName, name}) {
-    console.log({orderName, name})
-    state.order[name] = orderName
-    Storage.set(name, state.order)
+    state[name] = orderName
+    Storage.set(name, state)
   },
 }
 

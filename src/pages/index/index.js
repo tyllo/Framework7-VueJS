@@ -1,28 +1,34 @@
-import store from 'store'
-import i18n from './i18n'
 import style from './style.scss'
 import template from './template.jade'
 
 var name = 'index'
 
-store.actions.setLocal({name, i18n})
-
 export default {
   name,
   template: template({style, name}),
+
+  vuex: {
+    getters: {
+      auth: state => state.auth.login,
+    },
+  },
+
   data: () => ({
     countClick: 0,
     className: 'bounceIn',
   }),
+
   ready() {
-    if (store.state.auth.login) {
+    if (this.auth) {
       setTimeout(this.redirect, 1000)
     }
   },
+
   methods: {
     openLangs() {
       this.$root.$broadcast('open:popup:langs', this.$els.lang)
     },
+
     clickLogo() {
       var count = this.$get('countClick')
       this.$set('countClick', ++count)
@@ -32,6 +38,7 @@ export default {
         setTimeout( () => this.$set('className', 'bounceIn'), 10)
       }
     },
+
     redirect() {
       var route = {
         name: 'tabs',
