@@ -27,7 +27,7 @@ export const state = Storage.get(name, defaults)
 // mutations
 export const mutations = {
   [SET_SETTINGS](state, payload) {
-    state = payload
+    Object.assign(state, payload)
     Storage.set(name, state)
   },
 

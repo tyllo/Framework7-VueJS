@@ -21,6 +21,7 @@
     "git-rev-sync": "https://github.com/kurttheviking/git-rev-sync/tarball/master",
     "gulp": "^3.9.0",
     "gulp-connect": "^2.2.0",
+    "gulp-env": "^0.4.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "jade": "^1.11.0",

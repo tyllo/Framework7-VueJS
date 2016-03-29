@@ -17,7 +17,7 @@ export function login() {
   return new Promise( resolve => resolve({
     secret: randomChar(30),
     message: 'Авторизация пройдена',
-    ready_check: randomNumb % 2,
+    ready_check: randomNumb() % 2,
     create_at: randomDate(),
     login: 'demo',
     check_cnt: randomNumb() % 2,

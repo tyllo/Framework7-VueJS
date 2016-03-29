@@ -10,6 +10,7 @@ var defaults = {
   password: '',
   message: '',
   secret: '',
+  name_expeditor: '',
 }
 
 // initial state

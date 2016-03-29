@@ -9,7 +9,7 @@
         icon(v-else, id='profile')
       .content-block(
         v-if="companyName",
-        class=style.name) {{* companyName }}
+        class=style.name) {{ companyName }}
       .content-block(class=style.currency) {{ summa | formatSumm | summaTitle }}
 
   .list-group(v-for='pages in menu')
@@ -22,4 +22,4 @@
             :title='$t(page.title)')
             span.badge.bg-red(
               v-if='page.badge',
-              slot='after') {{* page.badge }}
+              slot='after') {{ page.badge }}

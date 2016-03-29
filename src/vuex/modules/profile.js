@@ -15,7 +15,7 @@ export const state = Storage.get(name, defaults)
 // mutations
 export const mutations = {
   [KONTR_INFO](state, payload) {
-    state = payload
+    Object.assign(state, payload)
     Storage.set(name, state)
   },
 
